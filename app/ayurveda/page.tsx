@@ -34,8 +34,8 @@ export default function AyurvedaPage() {
               </p>
               <div className="bg-amber-50 p-6 rounded-lg border-l-4 border-green-600 mb-6">
                 <p className="text-gray-700 italic">
-                  "The indigenous cow is a mobile dispensary. It is the treasure of all medicines. Its five products -
-                  milk, curd, ghee, urine, and dung - have medicinal properties that can treat many disorders."
+                  The indigenous cow is a mobile dispensary. It is the treasure of all medicines. Its five products -
+                  milk, curd, ghee, urine, and dung - have medicinal properties that can treat many disorders.
                 </p>
               </div>
               <Button className="bg-green-600 hover:bg-green-700 text-white">

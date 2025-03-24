@@ -97,7 +97,7 @@ export default function ContactPage() {
                   <h3 className="text-lg font-bold mb-2">How can I visit your center?</h3>
                   <p className="text-gray-700">
                     You can visit our center during working hours (Monday to Saturday, 9 AM to 5 PM). We recommend
-                    calling ahead to schedule a visit, especially if you're interested in a specific program or would
+                    calling ahead to schedule a visit, especially if you re interested in a specific program or would
                     like a guided tour.
                   </p>
                 </CardContent>
@@ -108,7 +108,7 @@ export default function ContactPage() {
                   <h3 className="text-lg font-bold mb-2">Do you offer training programs for groups?</h3>
                   <p className="text-gray-700">
                     Yes, we offer customized training programs for groups, organizations, and institutions. Please
-                    contact us with your specific requirements, and we'll design a program that meets your needs.
+                    contact us with your specific requirements, and we ll design a program that meets your needs.
                   </p>
                 </CardContent>
               </Card>

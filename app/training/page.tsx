@@ -303,8 +303,8 @@ export default function TrainingPage() {
                   </div>
                 </div>
                 <p className="text-gray-700 italic">
-                  "I came to Go Vigyan after my jersey cow based dairy went in loss. I was hugely benefitted by the
-                  training of producing cow based products. Thanks to Go Vigyan I was able to start a new business."
+                  I came to Go Vigyan after my jersey cow based dairy went in loss. I was hugely benefitted by the
+                  training of producing cow based products. Thanks to Go Vigyan I was able to start a new business.
                 </p>
               </CardContent>
             </Card>
@@ -326,8 +326,8 @@ export default function TrainingPage() {
                   </div>
                 </div>
                 <p className="text-gray-700 italic">
-                  "After the training, I started farming as told by Go Vigyan. My input cost was reduced considerably
-                  and my income grew with this. Now I am earning 2 Lakh Rupees per year from my 2 Acre Land."
+                  After the training, I started farming as told by Go Vigyan. My input cost was reduced considerably
+                  and my income grew with this. Now I am earning 2 Lakh Rupees per year from my 2 Acre Land.
                 </p>
               </CardContent>
             </Card>
@@ -349,8 +349,8 @@ export default function TrainingPage() {
                   </div>
                 </div>
                 <p className="text-gray-700 italic">
-                  "The training on Panchagavya preparation has transformed my small farm. The natural fertilizers and
-                  pest control solutions have improved my crop yield while reducing costs. I'm grateful to Go Vigyan."
+                  The training on Panchagavya preparation has transformed my small farm. The natural fertilizers and
+                  pest control solutions have improved my crop yield while reducing costs. I m grateful to Go Vigyan.
                 </p>
               </CardContent>
             </Card>

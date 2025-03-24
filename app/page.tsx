@@ -166,9 +166,9 @@ export default function Home() {
                   <p className="text-gray-600">Cow Based Products Manufacturer, Gondia Dist., Maharashtra, India</p>
                 </div>
                 <p className="text-gray-700 italic">
-                  "I came to Go Vigyan after my jersey cow based dairy went in loss. I was hugely benefitted by the
+                  I came to Go Vigyan after my jersey cow based dairy went in loss. I was hugely benefitted by the
                   training of producing cow based products. Thanks to Go Vigyan I was able to start a new business. I
-                  get regular consultation from Go Vigyan & my business has grown since then."
+                  get regular consultation from Go Vigyan & my business has grown since then
                 </p>
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function Home() {
                 <CardContent className="p-6">
                   <div className="text-sm text-gray-500 mb-2">1 Nov 2023 • govigyan</div>
                   <h3 className="text-xl font-bold mb-4">
-                    India's Cherished Heritage: Cow-Centric Culture and Traditions
+                    India s Cherished Heritage: Cow-Centric Culture and Traditions
                   </h3>
                   <Link href="#" className="text-green-600 hover:text-green-700 inline-flex items-center">
                     Read More <ChevronRight className="h-4 w-4 ml-1" />

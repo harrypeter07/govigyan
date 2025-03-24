@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import type React from "react"
@@ -39,6 +40,7 @@ export function LocomotiveScrollProvider({ children }: { children: React.ReactNo
             smooth: true,
           },
           tablet: {
+            breakpoint: 768,
             smooth: true,
           },
           lerp: 0.07,
