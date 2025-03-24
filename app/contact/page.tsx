@@ -43,7 +43,11 @@ export default function ContactPage() {
 										<Phone className="h-5 w-5 mr-3 mt-1 text-green-600" />
 										<div>
 											<p className="font-medium">Phone</p>
-											<p className="text-gray-600">+0712-2772273, 2734182</p>
+											<p className="text-gray-600">
+												Toll-free: 1800-2772273
+												<br />
+												Landline: +91-712-2734182
+											</p>
 										</div>
 									</div>
 									<div className="flex items-start">
@@ -73,8 +77,6 @@ export default function ContactPage() {
 										src="/image-34.jpg?height=300&width=600&text=Map"
 										alt="Go Vigyan Location Map"
 										fill
-										width={600}
-										height={300}
 										className="object-cover"
 									/>
 								</div>

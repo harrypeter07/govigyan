@@ -38,8 +38,8 @@ export function SiteHeader() {
 			className={cn(
 				"fixed top-0 left-0 right-0 z-50 transition-all duration-300",
 				scrolled
-					? "bg-green-600/85 backdrop-blur-md shadow-md py-2"
-					: "bg-green-600/70 backdrop-blur-sm py-4"
+					? "bg-green-600/85 backdrop-blur-md shadow-md py-1"
+					: "bg-green-600/70 backdrop-blur-sm py-2"
 			)}
 		>
 			{/* Top Bar */}
@@ -86,18 +86,15 @@ export function SiteHeader() {
 							<Image
 								src="/image-34.jpg"
 								alt="Go Vigyan Logo"
-								width={180}
-								height={60}
-								className={cn(
-									"transition-all duration-300",
-									scrolled ? "h-10" : "h-12"
-								)}
+								width={140}
+								height={45}
+								className="transition-all duration-300"
 							/>
 						</Link>
 					</motion.div>
 
 					{/* Desktop Navigation */}
-					<nav className="hidden md:flex items-center space-x-8">
+					<nav className="hidden md:flex items-center space-x-6">
 						{navLinks.map((link) => (
 							<Link
 								key={link.href}
@@ -169,9 +166,9 @@ export function SiteHeader() {
 								<Image
 									src="/image-34.jpg"
 									alt="Go Vigyan Logo"
-									width={140}
-									height={50}
-									className="h-10"
+									width={120}
+									height={40}
+									className="transition-all duration-300"
 								/>
 							</div>
 							<div className="flex flex-col space-y-4">

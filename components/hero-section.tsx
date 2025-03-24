@@ -46,9 +46,9 @@ export function HeroSection({
 				<Image
 					src={imageSrc || "/image-34.jpg"}
 					alt={title}
-					fill
-					sizes="100vw"
-					className="object-cover transition-transform duration-700 hover:scale-105"
+					width={1920}
+					height={1080}
+					className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
 					priority
 				/>
 				{overlay && <div className="absolute inset-0 bg-black/40" />}
