@@ -84,13 +84,13 @@ export function SiteHeader() {
 					>
 						<Link href="/" className="flex items-center">
 							<Image
-								src="/image-34.jpg?height=60&width=180"
+								src="/image-34.jpg"
 								alt="Go Vigyan Logo"
 								width={180}
 								height={60}
 								className={cn(
 									"transition-all duration-300",
-									scrolled ? "h-10 w-auto" : "h-12 w-auto"
+									scrolled ? "h-10" : "h-12"
 								)}
 							/>
 						</Link>
@@ -167,11 +167,11 @@ export function SiteHeader() {
 						<SheetContent className="w-[300px] sm:w-[400px] bg-green-50">
 							<div className="flex justify-between items-center mb-8">
 								<Image
-									src="/image-34.jpg?height=60&width=180"
+									src="/image-34.jpg"
 									alt="Go Vigyan Logo"
 									width={140}
 									height={50}
-									className="h-10 w-auto"
+									className="h-10"
 								/>
 							</div>
 							<div className="flex flex-col space-y-4">
@@ -202,6 +202,10 @@ export function SiteHeader() {
 									<div className="flex items-center text-sm">
 										<Mail className="h-4 w-4 mr-2 text-green-600" />
 										<span>info@govigyan.com</span>
+									</div>
+									<div className="flex items-center text-sm">
+										<MapPin className="h-4 w-4 mr-2 text-green-600" />
+										<span>Kamdhenu Bhavan, Nagpur, India</span>
 									</div>
 								</div>
 							</div>

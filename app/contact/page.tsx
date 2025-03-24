@@ -73,6 +73,8 @@ export default function ContactPage() {
 										src="/image-34.jpg?height=300&width=600&text=Map"
 										alt="Go Vigyan Location Map"
 										fill
+										width={600}
+										height={300}
 										className="object-cover"
 									/>
 								</div>
