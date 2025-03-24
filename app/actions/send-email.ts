@@ -1,13 +1,26 @@
-import { NextResponse } from "next/server"
+"use server"
+
 import nodemailer from "nodemailer"
 
-export async function POST(request: Request) {
+interface EmailData {
+  name: string
+  email: string
+  phone?: string
+  subject?: string
+  message: string
+  formType?: string
+}
+
+export async function sendEmail(data: EmailData) {
   try {
-    const { name, email, phone, subject, message } = await request.json()
+    const { name, email, phone, subject, message, formType } = data
 
     // Validate required fields
     if (!name || !email || !message) {
-      return NextResponse.json({ error: "Name, email, and message are required fields" }, { status: 400 })
+      return {
+        success: false,
+        message: "Name, email, and message are required fields",
+      }
     }
 
     // Create a transporter
@@ -19,14 +32,30 @@ export async function POST(request: Request) {
       },
     })
 
+    // Determine subject based on form type
+    let emailSubject = subject || `New message from ${name} via Go Vigyan Website`
+    if (formType) {
+      switch (formType) {
+        case "training":
+          emailSubject = `Training Registration: ${name}`
+          break
+        case "consultation":
+          emailSubject = `Ayurvedic Consultation Request: ${name}`
+          break
+        default:
+          emailSubject = `${formType}: ${name}`
+      }
+    }
+
     // Email content
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: "hassanmansuri570@gmail.com", // Recipient email
-      subject: subject || `New message from ${name} via Go Vigyan Website`,
+      subject: emailSubject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;">
           <h2 style="color: #4d7c0f; border-bottom: 2px solid #4d7c0f; padding-bottom: 10px;">New Message from Go Vigyan Website</h2>
+          <p><strong>Form Type:</strong> ${formType || "Contact Form"}</p>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
@@ -34,7 +63,7 @@ export async function POST(request: Request) {
             <p style="margin-top: 0;"><strong>Message:</strong></p>
             <p style="white-space: pre-line;">${message}</p>
           </div>
-          <p style="margin-top: 20px; font-size: 12px; color: #6b7280;">This email was sent from the Go Vigyan website contact form.</p>
+          <p style="margin-top: 20px; font-size: 12px; color: #6b7280;">This email was sent from the Go Vigyan website.</p>
         </div>
       `,
     }
@@ -42,10 +71,16 @@ export async function POST(request: Request) {
     // Send email
     await transporter.sendMail(mailOptions)
 
-    return NextResponse.json({ success: true })
+    return {
+      success: true,
+      message: "Email sent successfully",
+    }
   } catch (error) {
     console.error("Error sending email:", error)
-    return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
+    return {
+      success: false,
+      message: "Failed to send email. Please try again later.",
+    }
   }
 }
 
