@@ -65,6 +65,8 @@ export default function ShopPage() {
 										src={product.image || "/image-34.jpg"}
 										alt={product.title}
 										fill
+										width={300}
+										height={300}
 										className="object-cover transition-transform group-hover:scale-105"
 									/>
 									<div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
@@ -153,6 +155,8 @@ export default function ShopPage() {
 												}`}
 												alt={`Product ${index + 1}`}
 												fill
+												width={300}
+												height={300}
 												className="object-cover transition-transform group-hover:scale-105"
 											/>
 											<div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>

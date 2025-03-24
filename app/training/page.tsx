@@ -76,6 +76,8 @@ export default function TrainingPage() {
 										src="/image-34.jpg?height=300&width=400"
 										alt="Cow Based Economy"
 										fill
+										width={400}
+										height={300}
 										className="object-cover"
 									/>
 								</div>
@@ -118,6 +120,8 @@ export default function TrainingPage() {
 										src="/image-34.jpg?height=300&width=400"
 										alt="Organic Farming"
 										fill
+										width={400}
+										height={300}
 										className="object-cover"
 									/>
 								</div>
@@ -158,6 +162,8 @@ export default function TrainingPage() {
 										src="/image-34.jpg?height=300&width=400"
 										alt="Vermicompost"
 										fill
+										width={400}
+										height={300}
 										className="object-cover"
 									/>
 								</div>
@@ -200,6 +206,8 @@ export default function TrainingPage() {
 										src="/image-34.jpg?height=300&width=400"
 										alt="Natural Fertilizers"
 										fill
+										width={400}
+										height={300}
 										className="object-cover"
 									/>
 								</div>

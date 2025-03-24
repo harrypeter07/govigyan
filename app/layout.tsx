@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LoadingProvider } from "@/components/loading-provider";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
 export const metadata = {
@@ -26,11 +27,13 @@ export default function RootLayout({
 					disableTransitionOnChange
 				>
 					<LoadingProvider>
-						<div className="relative flex flex-col min-h-screen overflow-hidden">
-							<SiteHeader />
-							<main className="flex-1 pt-20 w-full">{children}</main>
-							<SiteFooter />
-						</div>
+						<SmoothScroll>
+							<div className="relative flex flex-col min-h-screen overflow-hidden">
+								<SiteHeader />
+								<main className="flex-1 pt-20 w-full">{children}</main>
+								<SiteFooter />
+							</div>
+						</SmoothScroll>
 					</LoadingProvider>
 				</ThemeProvider>
 			</body>

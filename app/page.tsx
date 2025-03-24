@@ -17,6 +17,8 @@ export default function Home() {
 							src="/image-34.jpg?height=600&width=1920"
 							alt="Go Vigyan Hero"
 							fill
+							width={1920}
+							height={600}
 							className="object-cover"
 							priority
 						/>
@@ -48,6 +50,8 @@ export default function Home() {
 									src="/image-34.jpg?height=400&width=600"
 									alt="About Go Vigyan"
 									fill
+									width={600}
+									height={400}
 									className="object-cover"
 								/>
 							</div>
@@ -279,6 +283,8 @@ export default function Home() {
 										src="/image-34.jpg?height=200&width=400"
 										alt="News Image"
 										fill
+										width={400}
+										height={200}
 										className="object-cover"
 									/>
 								</div>

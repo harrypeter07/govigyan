@@ -58,6 +58,8 @@ export default function AyurvedaPage() {
 								src="/image-34.jpg?height=400&width=600"
 								alt="Panchagavya"
 								fill
+								width={600}
+								height={400}
 								className="object-cover"
 							/>
 						</div>

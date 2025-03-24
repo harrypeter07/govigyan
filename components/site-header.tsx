@@ -98,6 +98,25 @@ export function SiteHeader() {
 
 					{/* Desktop Navigation */}
 					<nav className="hidden md:flex items-center space-x-8">
+						{navLinks.map((link) => (
+							<Link
+								key={link.href}
+								href={link.href}
+								className={cn(
+									"text-white font-medium relative group transition-colors duration-300 hover:text-amber-300",
+									activeLink === link.href && "text-amber-300"
+								)}
+							>
+								{link.label}
+								<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full" />
+							</Link>
+						))}
+						<Button
+							className="bg-amber-400 hover:bg-amber-500 text-black font-semibold transform hover:scale-105 transition-all duration-300"
+							asChild
+						>
+							<Link href="/contact">Contact Us</Link>
+						</Button>
 						{navLinks.map((link, index) => (
 							<motion.div
 								key={link.href}
