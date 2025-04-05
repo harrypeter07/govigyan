@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GovGyan - Government Schemes Information Platform
+
+GovGyan is a comprehensive platform designed to help citizens access and understand various government schemes and initiatives. Our platform features an AI-powered chatbot that provides instant, accurate information about government programs.
+
+## Features
+
+- 🤖 **AI-Powered Chatbot**: Get instant answers about government schemes using our Gemini-powered chatbot
+- 🔒 **Secure & Reliable**: Built with robust error handling and rate limiting
+- ⌨️ **Keyboard Shortcuts**: Efficient navigation with keyboard controls
+- 💾 **Chat History**: Persistent chat history for continued conversations
+- 🌙 **Dark Mode Support**: Comfortable viewing in any lighting condition
+- ♿ **Accessibility**: WCAG compliant with full keyboard navigation and screen reader support
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18.0.0 or higher
+- npm or yarn package manager
+- A Gemini API key from Google
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/yourusername/govigyan.git
+   cd govigyan
+   ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Create a `.env` file in the root directory and add your environment variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
 
-## Deploy on Vercel
+4. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Usage
+
+### Chatbot Features
+
+- Type your question about any government scheme in the chat input
+- Press `Ctrl/⌘ + K` to quickly focus the chat input
+- Press `Escape` to clear the input field
+- Click the trash icon to clear chat history
+- View message timestamps for better context
+- Automatic error handling with clear feedback
+
+### Rate Limiting
+
+The chatbot implements rate limiting to ensure fair usage:
+
+- 10 messages per minute per user
+- Clear error messages when limits are reached
+
+## Tech Stack
+
+- **Framework**: Next.js 14 with App Router
+- **UI Components**: Shadcn/ui
+- **Styling**: Tailwind CSS
+- **AI Integration**: Google Gemini API
+- **Type Safety**: TypeScript
+
+## Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature-name`
+3. Make your changes
+4. Run tests and ensure code quality
+5. Submit a pull request
+
+## Security
+
+- All user inputs are validated and sanitized
+- Rate limiting prevents abuse
+- Content filtering through Gemini's safety settings
+- No sensitive data storage
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+If you encounter any issues or have questions:
+
+1. Check the [Issues](https://github.com/yourusername/govigyan/issues) page
+2. Create a new issue if needed
+3. Contact us at support@govigyan.com
+
+## Acknowledgments
+
+- Google Gemini API for powering our chatbot
+- The open-source community for various tools and libraries
+- Contributors who have helped improve the platform
