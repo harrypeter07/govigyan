@@ -65,6 +65,17 @@ module.exports = {
 					from: { height: "var(--radix-accordion-content-height)" },
 					to: { height: 0 },
 				},
+				"loading-dot": {
+					"0%": {
+						opacity: "0.2",
+					},
+					"20%": {
+						opacity: "1",
+					},
+					"100%": {
+						opacity: "0.2",
+					},
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
