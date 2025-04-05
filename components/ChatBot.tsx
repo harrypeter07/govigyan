@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
+import { Loader2, Send, Bot, User } from "lucide-react";
 
 interface Message {
 	role: "user" | "assistant";
@@ -23,7 +23,7 @@ export function ChatBot() {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!input.trim()) return;
+		if (!input.trim() || isLoading) return;
 
 		const userMessage = { role: "user" as const, content: input };
 		setMessages((prev) => [...prev, userMessage]);
@@ -61,15 +61,26 @@ export function ChatBot() {
 
 	return (
 		<div className="w-full max-w-2xl mx-auto p-4 space-y-4">
-			<Card className="h-[600px] p-4 flex flex-col">
-				<div className="flex-1 overflow-y-auto space-y-4">
+			<Card className="h-[600px] p-4 flex flex-col relative">
+				<div
+					className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600"
+					role="log"
+					aria-live="polite"
+					aria-label="Chat messages"
+				>
 					{messages.map((message, index) => (
 						<div
 							key={index}
-							className={`flex ${
+							className={`flex items-start gap-2 ${
 								message.role === "user" ? "justify-end" : "justify-start"
 							}`}
 						>
+							{message.role === "assistant" && (
+								<Bot
+									className="w-6 h-6 mt-1 text-blue-500"
+									aria-hidden="true"
+								/>
+							)}
 							<div
 								className={`max-w-[80%] rounded-lg p-3 ${
 									message.role === "user"
@@ -79,8 +90,19 @@ export function ChatBot() {
 							>
 								{message.content}
 							</div>
+							{message.role === "user" && (
+								<User
+									className="w-6 h-6 mt-1 text-blue-500"
+									aria-hidden="true"
+								/>
+							)}
 						</div>
 					))}
+					{isLoading && (
+						<div className="flex items-center justify-center py-2">
+							<Loader2 className="h-6 w-6 animate-spin text-blue-500" />
+						</div>
+					)}
 				</div>
 				<form onSubmit={handleSubmit} className="mt-4 flex gap-2">
 					<Input
@@ -89,9 +111,18 @@ export function ChatBot() {
 						placeholder="Type your message..."
 						disabled={isLoading}
 						className="flex-1"
+						aria-label="Chat message input"
 					/>
-					<Button type="submit" disabled={isLoading}>
-						{isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Send"}
+					<Button
+						type="submit"
+						disabled={isLoading || !input.trim()}
+						aria-label="Send message"
+					>
+						{isLoading ? (
+							<Loader2 className="h-4 w-4 animate-spin" />
+						) : (
+							<Send className="h-4 w-4" />
+						)}
 					</Button>
 				</form>
 			</Card>
