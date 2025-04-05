@@ -53,17 +53,47 @@ export async function sendEmail(data: EmailData) {
       to: "hassanmansuri570@gmail.com", // Recipient email
       subject: emailSubject,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;">
-          <h2 style="color: #4d7c0f; border-bottom: 2px solid #4d7c0f; padding-bottom: 10px;">New Message from Go Vigyan Website</h2>
-          <p><strong>Form Type:</strong> ${formType || "Contact Form"}</p>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
-          <div style="margin-top: 20px; padding: 15px; background-color: #f9fafb; border-radius: 5px;">
-            <p style="margin-top: 0;"><strong>Message:</strong></p>
-            <p style="white-space: pre-line;">${message}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="color: #4d7c0f; margin: 0; padding-bottom: 15px; border-bottom: 2px solid #4d7c0f;">New Message from Go Vigyan Website</h2>
           </div>
-          <p style="margin-top: 20px; font-size: 12px; color: #6b7280;">This email was sent from the Go Vigyan website.</p>
+          
+          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+            <h3 style="color: #2d3748; margin: 0 0 15px 0;">Contact Information</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px 0; color: #4a5568; width: 120px;"><strong>Form Type:</strong></td>
+                <td style="padding: 8px 0; color: #2d3748;">${formType || "Contact Form"}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #4a5568;"><strong>Name:</strong></td>
+                <td style="padding: 8px 0; color: #2d3748;">${name}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #4a5568;"><strong>Email:</strong></td>
+                <td style="padding: 8px 0; color: #2d3748;">${email}</td>
+              </tr>
+              ${phone ? `
+              <tr>
+                <td style="padding: 8px 0; color: #4a5568;"><strong>Phone:</strong></td>
+                <td style="padding: 8px 0; color: #2d3748;">${phone}</td>
+              </tr>` : ""}
+              ${subject ? `
+              <tr>
+                <td style="padding: 8px 0; color: #4a5568;"><strong>Subject:</strong></td>
+                <td style="padding: 8px 0; color: #2d3748;">${subject}</td>
+              </tr>` : ""}
+            </table>
+          </div>
+          
+          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px;">
+            <h3 style="color: #2d3748; margin: 0 0 15px 0;">Message</h3>
+            <div style="color: #2d3748; white-space: pre-line; line-height: 1.6;">${message}</div>
+          </div>
+
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; text-align: center;">
+            <p style="margin: 0; font-size: 12px; color: #718096;">This email was sent from the Go Vigyan website</p>
+          </div>
         </div>
       `,
     }

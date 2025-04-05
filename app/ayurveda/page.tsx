@@ -27,7 +27,7 @@ export default function AyurvedaPage() {
 			/>
 
 			{/* Introduction Section */}
-			<section className="py-16 bg-white" id="panchagavya" data-scroll-section>
+			<section className="py-16 bg-card" id="panchagavya" data-scroll-section>
 				<div className="container mx-auto px-4">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 						<div>
@@ -57,7 +57,7 @@ export default function AyurvedaPage() {
 							<Image
 								src="/image-34.jpg?height=400&width=600"
 								alt="Panchagavya"
-								fill
+								
 								width={600}
 								height={400}
 								className="object-cover"
@@ -248,7 +248,8 @@ export default function AyurvedaPage() {
 									<Image
 										src={`/image-34.jpg?height=200&width=400&text=${product.title}`}
 										alt={product.title}
-										fill
+										width={400}
+                                        height={200}
 										className="object-cover"
 									/>
 								</div>

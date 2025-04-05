@@ -20,7 +20,7 @@ export default function TrainingPage() {
 			/>
 
 			{/* Overview Section */}
-			<section className="py-16 bg-white" id="programs" data-scroll-section>
+			<section className="py-16 bg-card" id="programs" data-scroll-section>
 				<div className="container mx-auto px-4">
 					<SectionHeading
 						title="Our Training Programs"
@@ -37,11 +37,14 @@ export default function TrainingPage() {
 							<TabsTrigger value="pestcontrol">Pest Control</TabsTrigger>
 						</TabsList>
 
-						<TabsContent value="economy" className="border rounded-lg p-6">
+						<TabsContent
+							value="economy"
+							className="border-accent/20 rounded-lg p-6"
+						>
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 								<div>
 									<h3 className="text-2xl font-bold mb-4">Cow Based Economy</h3>
-									<p className="text-gray-700 mb-6">
+									<p className="text-card-foreground mb-6">
 										Learn how to build sustainable businesses around indigenous
 										cows and their products. This program covers
 										entrepreneurship opportunities, product development, and
@@ -49,25 +52,25 @@ export default function TrainingPage() {
 									</p>
 									<ul className="space-y-3">
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>
 												Product development from cow milk, urine, and dung
 											</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>
 												Marketing and distribution of cow-based products
 											</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>
 												Financial planning and sustainable business models
 											</span>
 										</li>
 									</ul>
-									<Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
+									<Button className="mt-6 bg-accent hover:bg-accent/90 text-accent-foreground">
 										Register Now <ArrowRight className="ml-2 h-4 w-4" />
 									</Button>
 								</div>
@@ -76,42 +79,43 @@ export default function TrainingPage() {
 										src="/image-34.jpg?height=300&width=400"
 										alt="Cow Based Economy"
 										fill
-										width={400}
-										height={300}
 										className="object-cover"
 									/>
 								</div>
 							</div>
 						</TabsContent>
 
-						<TabsContent value="farming" className="border rounded-lg p-6">
+						<TabsContent
+							value="farming"
+							className="border-accent/20 rounded-lg p-6"
+						>
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 								<div>
 									<h3 className="text-2xl font-bold mb-4">
 										Organic Farming - सेंद्रिय खेती
 									</h3>
-									<p className="text-gray-700 mb-6">
+									<p className="text-card-foreground mb-6">
 										Learn traditional and modern techniques of organic farming
 										using cow-based inputs. This program covers soil health,
 										crop rotation, and natural pest management.
 									</p>
 									<ul className="space-y-3">
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>
 												Soil preparation using cow dung and other organic matter
 											</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>Natural crop protection methods</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>Sustainable water management techniques</span>
 										</li>
 									</ul>
-									<Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
+									<Button className="mt-6 bg-accent hover:bg-accent/90 text-accent-foreground">
 										Register Now <ArrowRight className="ml-2 h-4 w-4" />
 									</Button>
 								</div>
@@ -120,40 +124,41 @@ export default function TrainingPage() {
 										src="/image-34.jpg?height=300&width=400"
 										alt="Organic Farming"
 										fill
-										width={400}
-										height={300}
 										className="object-cover"
 									/>
 								</div>
 							</div>
 						</TabsContent>
 
-						<TabsContent value="vermicompost" className="border rounded-lg p-6">
+						<TabsContent
+							value="vermicompost"
+							className="border-accent/20 rounded-lg p-6"
+						>
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 								<div>
 									<h3 className="text-2xl font-bold mb-4">
 										Vermicompost - केंचुआ खेती
 									</h3>
-									<p className="text-gray-700 mb-6">
+									<p className="text-card-foreground mb-6">
 										Master the art of vermicomposting using earthworms and cow
 										dung. Learn how to create nutrient-rich compost for your
 										plants and crops.
 									</p>
 									<ul className="space-y-3">
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>Setting up vermicompost beds</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>Earthworm cultivation and management</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>Harvesting and using vermicompost</span>
 										</li>
 									</ul>
-									<Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
+									<Button className="mt-6 bg-accent hover:bg-accent/90 text-accent-foreground">
 										Register Now <ArrowRight className="ml-2 h-4 w-4" />
 									</Button>
 								</div>
@@ -162,42 +167,43 @@ export default function TrainingPage() {
 										src="/image-34.jpg?height=300&width=400"
 										alt="Vermicompost"
 										fill
-										width={400}
-										height={300}
 										className="object-cover"
 									/>
 								</div>
 							</div>
 						</TabsContent>
 
-						<TabsContent value="fertilizer" className="border rounded-lg p-6">
+						<TabsContent
+							value="fertilizer"
+							className="border-accent/20 rounded-lg p-6"
+						>
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 								<div>
 									<h3 className="text-2xl font-bold mb-4">
 										Fertilizer - अमृत पानी -उर्वरक
 									</h3>
-									<p className="text-gray-700 mb-6">
+									<p className="text-card-foreground mb-6">
 										Learn to prepare natural fertilizers using cow urine, dung,
 										and other organic materials to enhance soil fertility and
 										plant growth.
 									</p>
 									<ul className="space-y-3">
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>
 												Preparation of Jeevamrut and other liquid fertilizers
 											</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>Composting techniques for different crops</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>Application methods and timing</span>
 										</li>
 									</ul>
-									<Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
+									<Button className="mt-6 bg-accent hover:bg-accent/90 text-accent-foreground">
 										Register Now <ArrowRight className="ml-2 h-4 w-4" />
 									</Button>
 								</div>
@@ -206,8 +212,6 @@ export default function TrainingPage() {
 										src="/image-34.jpg?height=300&width=400"
 										alt="Natural Fertilizers"
 										fill
-										width={400}
-										height={300}
 										className="object-cover"
 									/>
 								</div>
@@ -220,28 +224,28 @@ export default function TrainingPage() {
 									<h3 className="text-2xl font-bold mb-4">
 										Keet Niyantrak - कीट नियंत्रकरक
 									</h3>
-									<p className="text-gray-700 mb-6">
+									<p className="text-card-foreground mb-6">
 										Learn to prepare natural pest control solutions using cow
 										urine, neem, and other botanical ingredients to protect
 										crops without harmful chemicals.
 									</p>
 									<ul className="space-y-3">
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>
 												Preparation of cow urine-based pest repellents
 											</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>Companion planting for pest management</span>
 										</li>
 										<li className="flex items-start">
-											<CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+											<CheckCircle className="h-5 w-5 text-accent mr-2 mt-0.5" />
 											<span>Integrated pest management techniques</span>
 										</li>
 									</ul>
-									<Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
+									<Button className="mt-6 bg-accent hover:bg-accent/90 text-accent-foreground">
 										Register Now <ArrowRight className="ml-2 h-4 w-4" />
 									</Button>
 								</div>
