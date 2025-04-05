@@ -1,34 +1,103 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Loader2, Send, Bot, User, AlertCircle } from "lucide-react";
+import { Loader2, Send, Bot, User, AlertCircle, Trash } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface Message {
 	role: "user" | "assistant" | "error";
 	content: string;
+	timestamp?: number;
 }
 
+const STORAGE_KEY = "govigyan-chat-history";
+const MAX_HISTORY = 50;
+
 export function ChatBot() {
-	const [messages, setMessages] = useState<Message[]>([
-		{
-			role: "assistant",
-			content: "Hello! I'm your GovGyan assistant. How can I help you today?",
-		},
-	]);
+	const [messages, setMessages] = useState<Message[]>([]);
 	const [input, setInput] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const messagesEndRef = useRef<HTMLDivElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	// Load chat history on mount
+	useEffect(() => {
+		const savedHistory = localStorage.getItem(STORAGE_KEY);
+		if (savedHistory) {
+			try {
+				const parsed = JSON.parse(savedHistory);
+				setMessages(parsed);
+			} catch (e) {
+				console.error("Failed to parse chat history:", e);
+				setMessages([
+					{
+						role: "assistant",
+						content:
+							"Hello! I'm your GovGyan assistant. How can I help you today?",
+					},
+				]);
+			}
+		} else {
+			setMessages([
+				{
+					role: "assistant",
+					content:
+						"Hello! I'm your GovGyan assistant. How can I help you today?",
+				},
+			]);
+		}
+	}, []);
+
+	// Save chat history on update
+	useEffect(() => {
+		if (messages.length > 0) {
+			const historyToSave = messages.slice(-MAX_HISTORY);
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(historyToSave));
+		}
+	}, [messages]);
+
+	// Scroll to bottom on new messages
+	useEffect(() => {
+		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+	}, [messages]);
+
+	// Focus input on mount
+	useEffect(() => {
+		inputRef.current?.focus();
+	}, []);
+
+	// Keyboard shortcuts
+	useEffect(() => {
+		const handleKeyPress = (e: KeyboardEvent) => {
+			// Ctrl/Cmd + K to focus input
+			if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+				e.preventDefault();
+				inputRef.current?.focus();
+			}
+			// Escape to clear input
+			if (e.key === "Escape" && document.activeElement === inputRef.current) {
+				setInput("");
+			}
+		};
+
+		window.addEventListener("keydown", handleKeyPress);
+		return () => window.removeEventListener("keydown", handleKeyPress);
+	}, []);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!input.trim() || isLoading) return;
 
 		setError(null);
-		const userMessage = { role: "user" as const, content: input };
+		const userMessage = {
+			role: "user" as const,
+			content: input,
+			timestamp: Date.now(),
+		};
 		setMessages((prev) => [...prev, userMessage]);
 		setInput("");
 		setIsLoading(true);
@@ -49,6 +118,7 @@ export function ChatBot() {
 			const assistantMessage = {
 				role: "assistant" as const,
 				content: data.response,
+				timestamp: Date.now(),
 			};
 			setMessages((prev) => [...prev, assistantMessage]);
 		} catch (error) {
@@ -64,11 +134,23 @@ export function ChatBot() {
 						errorMessage === "Failed to fetch"
 							? "Network error. Please check your connection and try again."
 							: errorMessage,
+					timestamp: Date.now(),
 				},
 			]);
 		} finally {
 			setIsLoading(false);
 		}
+	};
+
+	const clearHistory = () => {
+		localStorage.removeItem(STORAGE_KEY);
+		setMessages([
+			{
+				role: "assistant",
+				content: "Hello! I'm your GovGyan assistant. How can I help you today?",
+				timestamp: Date.now(),
+			},
+		]);
 	};
 
 	return (
@@ -80,6 +162,21 @@ export function ChatBot() {
 				</Alert>
 			)}
 			<Card className="h-[600px] p-4 flex flex-col relative">
+				<div className="flex justify-between items-center mb-4">
+					<p className="text-sm text-muted-foreground">
+						Press <kbd className="px-2 py-1 bg-muted rounded">Ctrl/⌘ K</kbd> to
+						focus chat
+					</p>
+					<Button
+						variant="ghost"
+						size="sm"
+						onClick={clearHistory}
+						className="text-muted-foreground hover:text-destructive"
+						aria-label="Clear chat history"
+					>
+						<Trash className="h-4 w-4" />
+					</Button>
+				</div>
 				<div
 					className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600"
 					role="log"
@@ -114,7 +211,12 @@ export function ChatBot() {
 										: "bg-gray-100 dark:bg-gray-800"
 								}`}
 							>
-								{message.content}
+								<div>{message.content}</div>
+								{message.timestamp && (
+									<div className="mt-1 text-xs opacity-70">
+										{new Date(message.timestamp).toLocaleTimeString()}
+									</div>
+								)}
 							</div>
 							{message.role === "user" && (
 								<User
@@ -124,6 +226,7 @@ export function ChatBot() {
 							)}
 						</div>
 					))}
+					<div ref={messagesEndRef} />
 					{isLoading && (
 						<div className="flex items-center justify-center py-2">
 							<Loader2 className="h-6 w-6 animate-spin text-blue-500" />
@@ -132,9 +235,10 @@ export function ChatBot() {
 				</div>
 				<form onSubmit={handleSubmit} className="mt-4 flex gap-2">
 					<Input
+						ref={inputRef}
 						value={input}
 						onChange={(e) => setInput(e.target.value)}
-						placeholder="Type your message..."
+						placeholder="Type your message... (Ctrl/⌘ K to focus)"
 						disabled={isLoading}
 						className="flex-1"
 						aria-label="Chat message input"
