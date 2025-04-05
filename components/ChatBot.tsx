@@ -13,9 +13,11 @@ import {
 	Trash,
 	Volume2,
 	VolumeX,
+	Download,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { playSound, isSoundEnabled, toggleSound } from "@/lib/sounds";
+import { exportChatHistory } from "@/lib/export";
 
 interface Message {
 	role: "user" | "assistant" | "error";
@@ -177,6 +179,13 @@ export function ChatBot() {
 		]);
 	};
 
+	const handleExport = () => {
+		if (messages.length > 1) {
+			// Don't export if only welcome message
+			exportChatHistory(messages);
+		}
+	};
+
 	return (
 		<div className="w-full max-w-2xl mx-auto p-4 space-y-4">
 			{error && (
@@ -208,15 +217,27 @@ export function ChatBot() {
 							)}
 						</Button>
 					</div>
-					<Button
-						variant="ghost"
-						size="sm"
-						onClick={clearHistory}
-						className="text-muted-foreground hover:text-destructive"
-						aria-label="Clear chat history"
-					>
-						<Trash className="h-4 w-4" />
-					</Button>
+					<div className="flex items-center gap-2">
+						<Button
+							variant="ghost"
+							size="sm"
+							onClick={handleExport}
+							className="text-muted-foreground hover:text-primary"
+							aria-label="Export chat history"
+							disabled={messages.length <= 1}
+						>
+							<Download className="h-4 w-4" />
+						</Button>
+						<Button
+							variant="ghost"
+							size="sm"
+							onClick={clearHistory}
+							className="text-muted-foreground hover:text-destructive"
+							aria-label="Clear chat history"
+						>
+							<Trash className="h-4 w-4" />
+						</Button>
+					</div>
 				</div>
 				<div
 					className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600"
