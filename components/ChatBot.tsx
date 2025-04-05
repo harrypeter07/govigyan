@@ -4,8 +4,18 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Loader2, Send, Bot, User, AlertCircle, Trash } from "lucide-react";
+import {
+	Loader2,
+	Send,
+	Bot,
+	User,
+	AlertCircle,
+	Trash,
+	Volume2,
+	VolumeX,
+} from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { playSound, isSoundEnabled, toggleSound } from "@/lib/sounds";
 
 interface Message {
 	role: "user" | "assistant" | "error";
@@ -21,8 +31,14 @@ export function ChatBot() {
 	const [input, setInput] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [soundEnabled, setSoundEnabled] = useState(false);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
+
+	// Initialize sound preference
+	useEffect(() => {
+		setSoundEnabled(isSoundEnabled());
+	}, []);
 
 	// Load chat history on mount
 	useEffect(() => {
@@ -101,6 +117,7 @@ export function ChatBot() {
 		setMessages((prev) => [...prev, userMessage]);
 		setInput("");
 		setIsLoading(true);
+		playSound("messageSent");
 
 		try {
 			const response = await fetch("/api/chat", {
@@ -121,6 +138,7 @@ export function ChatBot() {
 				timestamp: Date.now(),
 			};
 			setMessages((prev) => [...prev, assistantMessage]);
+			playSound("messageReceived");
 		} catch (error) {
 			console.error("Error:", error);
 			const errorMessage =
@@ -137,9 +155,15 @@ export function ChatBot() {
 					timestamp: Date.now(),
 				},
 			]);
+			playSound("error");
 		} finally {
 			setIsLoading(false);
 		}
+	};
+
+	const handleToggleSound = () => {
+		const newValue = toggleSound();
+		setSoundEnabled(newValue);
 	};
 
 	const clearHistory = () => {
@@ -163,10 +187,27 @@ export function ChatBot() {
 			)}
 			<Card className="h-[600px] p-4 flex flex-col relative">
 				<div className="flex justify-between items-center mb-4">
-					<p className="text-sm text-muted-foreground">
-						Press <kbd className="px-2 py-1 bg-muted rounded">Ctrl/⌘ K</kbd> to
-						focus chat
-					</p>
+					<div className="flex items-center gap-4">
+						<p className="text-sm text-muted-foreground">
+							Press <kbd className="px-2 py-1 bg-muted rounded">Ctrl/⌘ K</kbd>{" "}
+							to focus chat
+						</p>
+						<Button
+							variant="ghost"
+							size="sm"
+							onClick={handleToggleSound}
+							className="text-muted-foreground hover:text-primary"
+							aria-label={
+								soundEnabled ? "Disable sound effects" : "Enable sound effects"
+							}
+						>
+							{soundEnabled ? (
+								<Volume2 className="h-4 w-4" />
+							) : (
+								<VolumeX className="h-4 w-4" />
+							)}
+						</Button>
+					</div>
 					<Button
 						variant="ghost"
 						size="sm"
