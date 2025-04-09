@@ -5,8 +5,8 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
-import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
+import { sendEmail } from "@/app/actions/send-email";
 
 interface ContactFormProps {
 	formType?: string;
@@ -47,22 +47,18 @@ export function ContactForm({
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const form = useRef<HTMLFormElement>(null);
-
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setIsSubmitting(true);
 		setFormStatus({ type: null, message: "" });
 
 		try {
-			if (form.current) {
-				await emailjs.sendForm(
-					"service_ds4cvnc",
-					"template_8pfxxdl",
-					form.current,
-					"5HTM06DNlcw6SiJIv"
-				);
+			const result = await sendEmail({
+				...formData,
+				formType,
+			});
 
+			if (result.success) {
 				setFormStatus({
 					type: "success",
 					message:
@@ -76,12 +72,17 @@ export function ContactForm({
 					subject: "",
 					message: "",
 				});
+			} else {
+				throw new Error(result.message);
 			}
 		} catch (error) {
 			console.error("Error sending email:", error);
 			setFormStatus({
 				type: "error",
-				message: "An unexpected error occurred. Please try again later.",
+				message:
+					error instanceof Error
+						? error.message
+						: "An unexpected error occurred. Please try again later.",
 			});
 		} finally {
 			setIsSubmitting(false);
@@ -115,7 +116,6 @@ export function ContactForm({
 			)}
 
 			<motion.form
-				ref={form}
 				onSubmit={handleSubmit}
 				className="space-y-4"
 				initial={{ opacity: 0, y: 20 }}

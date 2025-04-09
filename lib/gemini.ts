@@ -1,14 +1,10 @@
-import {
-	GoogleGenerativeAI,
-	HarmCategory,
-	HarmBlockThreshold,
-} from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-if (!process.env.GEMINI_API_KEY) {
-	throw new Error("Missing GEMINI_API_KEY environment variable");
+if (!process.env.NEXT_PUBLIC_GEMINI_API_KEY) {
+	throw new Error("Missing NEXT_PUBLIC_GEMINI_API_KEY environment variable");
 }
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
 
 // Simple in-memory rate limiting
 const rateLimits = new Map<string, { count: number; timestamp: number }>();
@@ -49,6 +45,8 @@ export class ChatError extends Error {
 
 export async function getChatResponse(
 	prompt: string,
+	context: string = "",
+	conversationHistory: string = "",
 	userId: string = "default"
 ) {
 	try {
@@ -61,49 +59,40 @@ export async function getChatResponse(
 
 		const model = genAI.getGenerativeModel({
 			model: "gemini-pro",
-			safetySettings: [
-				{
-					category: HarmCategory.HARASSMENT,
-					threshold: HarmBlockThreshold.MEDIUM_AND_ABOVE,
-				},
-				{
-					category: HarmCategory.HATE_SPEECH,
-					threshold: HarmBlockThreshold.MEDIUM_AND_ABOVE,
-				},
-				{
-					category: HarmCategory.SEXUALLY_EXPLICIT,
-					threshold: HarmBlockThreshold.MEDIUM_AND_ABOVE,
-				},
-				{
-					category: HarmCategory.DANGEROUS_CONTENT,
-					threshold: HarmBlockThreshold.MEDIUM_AND_ABOVE,
-				},
-			],
 		});
 
-		const result = await model.generateContent(prompt);
+		const fullPrompt = `Context: ${context}\n\nConversation History:\n${conversationHistory}\n\nQuestion: ${prompt}\n\nPlease provide a relevant response and only tell answer related to context when user mentions anything related to event like if asks for Axis or Axis 25, otherwise just talk normally.`;
+
+		const result = await model.generateContent(fullPrompt);
 		const response = await result.response;
 
-		if (response.promptFeedback?.blockReason) {
-			throw new ChatError(
-				"Your message was blocked for safety reasons.",
-				"SAFETY"
-			);
+		if (!response.text()) {
+			throw new ChatError("Failed to generate a response.", "API_ERROR");
 		}
 
 		return response.text();
-	} catch (error) {
+	} catch (error: unknown) {
 		if (error instanceof ChatError) {
 			throw error;
 		}
 
 		console.error("Error getting chat response:", error);
 
-		if (error.message?.includes("quota")) {
-			throw new ChatError(
-				"API quota exceeded. Please try again later.",
-				"API_ERROR"
-			);
+		if (error instanceof Error) {
+			if (error.message?.includes("quota")) {
+				throw new ChatError(
+					"API quota exceeded. Please try again later.",
+					"API_ERROR"
+				);
+			}
+
+			// Handle network-related errors
+			if (error instanceof TypeError && error.message.includes("fetch")) {
+				throw new ChatError(
+					"Network error. Please check your connection and try again.",
+					"API_ERROR"
+				);
+			}
 		}
 
 		throw new ChatError(

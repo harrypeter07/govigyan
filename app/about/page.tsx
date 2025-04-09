@@ -49,8 +49,6 @@ export default function AboutPage() {
 								src="/image-34.jpg?height=400&width=600"
 								alt="Go Vigyan Mission"
 								fill
-								width={600}
-								height={400}
 								className="object-cover"
 							/>
 						</div>
@@ -127,8 +125,6 @@ export default function AboutPage() {
 										src={`/image-34.jpg?height=300&width=300&text=Team Member ${i}`}
 										alt={`Team Member ${i}`}
 										fill
-										width={300}
-										height={300}
 										className="object-cover"
 									/>
 								</div>
