@@ -164,14 +164,16 @@ export function SiteHeader() {
 									)}
 								>
 									{link.label}
-									<ChevronDown className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:rotate-180" />
+									{link.href !== "/shop" && (
+										<ChevronDown className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:rotate-180" />
+									)}
 									<div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
 									{activeLink === link.href && (
 										<div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 transform origin-left scale-x-100" />
 									)}
 								</Link>
 								<AnimatePresence>
-									{hoveredLink === link.href && (
+									{hoveredLink === link.href && link.href !== "/shop" && (
 										<motion.div
 											initial={{ opacity: 0, y: 10 }}
 											animate={{ opacity: 1, y: 0 }}
