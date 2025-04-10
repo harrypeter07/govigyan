@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 
 export interface InputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {
+	/** Required property to avoid empty interface warning */
+	variant?: "default" | "filled";
 	/** Additional custom properties can be added here */
 	customStyles?: {
 		/** Optional custom container styles */
