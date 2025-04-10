@@ -170,19 +170,21 @@ export default function Home() {
 										<ul className="space-y-3">
 											<li className="flex items-start">
 												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span>
+												<span className="text-gray-800 font-medium">
 													Be part of a community dedicated to cow welfare.
 												</span>
 											</li>
 											<li className="flex items-start">
 												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span>
+												<span className="text-gray-800 font-medium">
 													Uphold the significance of cows in Indian culture.
 												</span>
 											</li>
 											<li className="flex items-start">
 												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span>Learn and share the value of cows.</span>
+												<span className="text-gray-800 font-medium">
+													Learn and share the value of cows.
+												</span>
 											</li>
 										</ul>
 									</CardContent>
@@ -217,19 +219,19 @@ export default function Home() {
 										<ul className="space-y-3">
 											<li className="flex items-start">
 												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span>
+												<span className="text-gray-800 font-medium">
 													Contribute to the protection of a cultural icon.
 												</span>
 											</li>
 											<li className="flex items-start">
 												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span>
+												<span className="text-gray-800 font-medium">
 													Donate to provide nourishment and shelter for cows.
 												</span>
 											</li>
 											<li className="flex items-start">
 												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span>
+												<span className="text-gray-800 font-medium">
 													Small contributions lead to significant change.
 												</span>
 											</li>
