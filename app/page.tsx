@@ -9,12 +9,6 @@ import { PageTransition } from "@/components/page-transition";
 import { ContactForm } from "@/components/contact-form";
 import { motion } from "framer-motion";
 
-const fadeInUp = {
-	initial: { opacity: 0, y: 20 },
-	animate: { opacity: 1, y: 0 },
-	transition: { duration: 0.6 },
-};
-
 export default function Home() {
 	return (
 		<PageTransition>
@@ -283,11 +277,11 @@ export default function Home() {
 									</p>
 								</div>
 								<p className="text-gray-700 italic">
-									"I came to Go Vigyan after my jersey cow based dairy went in
-									loss. I was hugely benefitted by the training of producing cow
-									based products. Thanks to Go Vigyan I was able to start a new
-									business. I get regular consultation from Go Vigyan & my
-									business has grown since then"
+									&quot;I came to Go Vigyan after my jersey cow based dairy went
+									in loss. I was hugely benefitted by the training of producing
+									cow based products. Thanks to Go Vigyan I was able to start a
+									new business. I get regular consultation from Go Vigyan &amp;
+									my business has grown since then&quot;
 								</p>
 							</motion.div>
 						</motion.div>
