@@ -330,7 +330,7 @@ export function ChatBot() {
 							)}
 
 							{/* Messages */}
-							<div className="flex-1 overflow-y-auto space-y-4 mb-4">
+							<div className="flex-1 overflow-y-auto space-y-4 mb-4 text-gray-900">
 								{messages.map((message, index) => (
 									<div
 										key={index}
@@ -358,9 +358,9 @@ export function ChatBot() {
 										<div
 											className={`rounded-lg p-3 max-w-[80%] relative group ${
 												message.role === "user"
-													? "bg-green-500 text-white"
+													? "bg-green-600 text-white"
 													: message.role === "error"
-													? "bg-red-50 text-red-600"
+													? "bg-red-50 text-red-700"
 													: "bg-gray-100 text-gray-900"
 											}`}
 										>
@@ -379,13 +379,13 @@ export function ChatBot() {
 												>
 													{isSpeaking ? (
 														<VolumeX
-															className="h-4 w-4 text-gray-600 hover:text-gray-900"
+															className="h-4 w-4 text-gray-700 hover:text-gray-900"
 															onClick={stopSpeaking}
 														/>
 													) : (
 														<>
-															<Volume className="h-4 w-4 text-gray-600 hover:text-gray-900" />
-															<span className="text-xs text-gray-500">
+															<Volume className="h-4 w-4 text-gray-700 hover:text-gray-900" />
+															<span className="text-xs text-gray-700">
 																{speechLang === "en-US" ? "EN" : "हि"}
 															</span>
 														</>
@@ -407,12 +407,12 @@ export function ChatBot() {
 									value={input}
 									onChange={(e) => setInput(e.target.value)}
 									disabled={isLoading}
-									className="flex-1"
+									className="flex-1 text-gray-900 placeholder:text-gray-500"
 								/>
 								<Button
 									type="submit"
 									disabled={isLoading || !input.trim()}
-									className="bg-green-600 hover:bg-green-700"
+									className="bg-green-600 hover:bg-green-700 text-white"
 								>
 									{isLoading ? (
 										<Loader2 className="h-4 w-4 animate-spin" />

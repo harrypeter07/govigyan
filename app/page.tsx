@@ -77,7 +77,7 @@ export default function Home() {
 								/>
 							</div>
 							<div>
-								<h2 className="text-3xl font-bold mb-6 text-green-800">
+								<h2 className="text-3xl font-bold mb-6 text-gray-900">
 									Go-Vigyan Anusandhan Kendra
 								</h2>
 								<p className="text-gray-700 mb-6">

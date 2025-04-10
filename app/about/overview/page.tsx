@@ -58,7 +58,7 @@ export default function AboutOverviewPage() {
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-xl font-bold mb-3">
+								<h3 className="text-xl font-bold mb-3 text-gray-900">
 									Scientific Excellence
 								</h3>
 								<p className="text-gray-700">
@@ -69,7 +69,7 @@ export default function AboutOverviewPage() {
 						</Card>
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-xl font-bold mb-3">
+								<h3 className="text-xl font-bold mb-3 text-gray-900">
 									Sustainable Practices
 								</h3>
 								<p className="text-gray-700">
@@ -80,7 +80,9 @@ export default function AboutOverviewPage() {
 						</Card>
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-xl font-bold mb-3">Community Impact</h3>
+								<h3 className="text-xl font-bold mb-3 text-gray-900">
+									Community Impact
+								</h3>
 								<p className="text-gray-700">
 									We work closely with farmers, researchers, and communities to
 									create meaningful social and economic impact.

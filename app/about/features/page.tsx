@@ -22,61 +22,39 @@ export default function AboutFeaturesPage() {
 						subtitle="The principles that guide our mission and work"
 						centered
 					/>
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
 						{[
 							{
-								title: "Sustainability",
+								icon: <Leaf className="h-8 w-8 text-green-600" />,
+								title: "Sustainable Practices",
 								description:
-									"Promoting eco-friendly practices and sustainable development through indigenous cow conservation",
-								icon: Leaf,
+									"We promote environmentally conscious methods in all our operations.",
 							},
 							{
-								title: "Compassion",
+								icon: <Heart className="h-8 w-8 text-green-600" />,
+								title: "Compassionate Care",
 								description:
-									"Treating every cow with care and respect, recognizing their sacred role in our culture",
-								icon: Heart,
+									"Our approach is rooted in respect and care for all living beings.",
 							},
 							{
+								icon: <Globe className="h-8 w-8 text-green-600" />,
 								title: "Global Impact",
 								description:
-									"Sharing knowledge and practices that benefit communities worldwide",
-								icon: Globe,
+									"Our research and practices have influenced organizations worldwide.",
 							},
-							{
-								title: "Excellence",
-								description:
-									"Maintaining high standards in research, education, and product development",
-								icon: Star,
-							},
-							{
-								title: "Integrity",
-								description:
-									"Conducting our work with transparency and ethical responsibility",
-								icon: Shield,
-							},
-							{
-								title: "Community",
-								description:
-									"Building strong relationships with farmers, researchers, and stakeholders",
-								icon: Users,
-							},
-						].map((feature, index) => {
-							const Icon = feature.icon;
-							return (
-								<Card
-									key={index}
-									className="border-none shadow-md hover:shadow-lg transition-shadow duration-300"
-								>
-									<CardContent className="p-6">
-										<div className="mb-4">
-											<Icon className="h-8 w-8 text-amber-500" />
-										</div>
-										<h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-										<p className="text-gray-600">{feature.description}</p>
-									</CardContent>
-								</Card>
-							);
-						})}
+						].map((feature, index) => (
+							<Card key={index} className="bg-white border-none shadow-md">
+								<CardContent className="p-6">
+									<div className="flex justify-center mb-4">{feature.icon}</div>
+									<h3 className="text-xl font-bold mb-3 text-gray-900 text-center">
+										{feature.title}
+									</h3>
+									<p className="text-gray-700 text-center">
+										{feature.description}
+									</p>
+								</CardContent>
+							</Card>
+						))}
 					</div>
 				</div>
 			</section>

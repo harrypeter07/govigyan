@@ -56,7 +56,9 @@ export default function AyurvedaOverviewPage() {
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-xl font-bold mb-3">Holistic Healing</h3>
+								<h3 className="text-xl font-bold mb-3 text-gray-900">
+									Holistic Healing
+								</h3>
 								<p className="text-gray-700">
 									Promotes complete physical, mental, and spiritual well-being
 									through natural remedies.
@@ -65,7 +67,9 @@ export default function AyurvedaOverviewPage() {
 						</Card>
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-xl font-bold mb-3">Immune Support</h3>
+								<h3 className="text-xl font-bold mb-3 text-gray-900">
+									Immune Support
+								</h3>
 								<p className="text-gray-700">
 									Strengthens the body's natural defense mechanisms using
 									Panchagavya-based preparations.
@@ -74,7 +78,9 @@ export default function AyurvedaOverviewPage() {
 						</Card>
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-xl font-bold mb-3">Natural Balance</h3>
+								<h3 className="text-xl font-bold mb-3 text-gray-900">
+									Natural Balance
+								</h3>
 								<p className="text-gray-700">
 									Restores and maintains the body's natural equilibrium through
 									traditional formulations.
@@ -96,34 +102,40 @@ export default function AyurvedaOverviewPage() {
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-lg font-semibold mb-2">
+								<h3 className="text-lg font-semibold mb-2 text-gray-900">
 									Health & Wellness
 								</h3>
-								<p className="text-gray-600">
+								<p className="text-gray-700">
 									Medicinal preparations for various health conditions
 								</p>
 							</CardContent>
 						</Card>
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-lg font-semibold mb-2">Skin Care</h3>
-								<p className="text-gray-600">
+								<h3 className="text-lg font-semibold mb-2 text-gray-900">
+									Skin Care
+								</h3>
+								<p className="text-gray-700">
 									Natural cosmetic and therapeutic skin treatments
 								</p>
 							</CardContent>
 						</Card>
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-lg font-semibold mb-2">Nutrition</h3>
-								<p className="text-gray-600">
+								<h3 className="text-lg font-semibold mb-2 text-gray-900">
+									Nutrition
+								</h3>
+								<p className="text-gray-700">
 									Dietary supplements and nutritional products
 								</p>
 							</CardContent>
 						</Card>
 						<Card className="bg-white border-none shadow-md">
 							<CardContent className="p-6">
-								<h3 className="text-lg font-semibold mb-2">Agriculture</h3>
-								<p className="text-gray-600">
+								<h3 className="text-lg font-semibold mb-2 text-gray-900">
+									Agriculture
+								</h3>
+								<p className="text-gray-700">
 									Organic farming and soil enrichment solutions
 								</p>
 							</CardContent>
