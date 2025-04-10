@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/hero-section";
 import { SectionHeading } from "@/components/section-heading";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { Leaf, Heart, Globe, Star, Shield, Users } from "lucide-react";
+import { Leaf, Heart, Globe } from "lucide-react";
 
 export default function AboutFeaturesPage() {
 	return (

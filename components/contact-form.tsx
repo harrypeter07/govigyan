@@ -1,12 +1,15 @@
 "use client";
 
 import type React from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { sendEmail } from "@/app/actions/send-email";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { SectionHeading } from "@/components/section-heading";
 
 interface ContactFormProps {
 	formType?: string;

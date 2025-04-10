@@ -71,7 +71,7 @@ export default function AyurvedaOverviewPage() {
 									Immune Support
 								</h3>
 								<p className="text-gray-700">
-									Strengthens the body's natural defense mechanisms using
+									Strengthens the body&apos;s natural defense mechanisms using
 									Panchagavya-based preparations.
 								</p>
 							</CardContent>
@@ -82,8 +82,8 @@ export default function AyurvedaOverviewPage() {
 									Natural Balance
 								</h3>
 								<p className="text-gray-700">
-									Restores and maintains the body's natural equilibrium through
-									traditional formulations.
+									Restores and maintains the body&apos;s natural equilibrium
+									through traditional formulations.
 								</p>
 							</CardContent>
 						</Card>

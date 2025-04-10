@@ -87,7 +87,7 @@ export default function Home() {
 									agriculture and traditional wisdom, our organization is
 									dedicated to researching and promoting the multifaceted
 									benefits of cows and their five essential products: milk,
-									curds, ghee, urine, and dung – collectively known as
+									curds, ghee, urine, and dung &ndash; collectively known as
 									Panchgavya.
 								</p>
 								<motion.div whileHover={{ scale: 1.05 }}>
