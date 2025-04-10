@@ -14,10 +14,14 @@ import {
 	Volume2,
 	VolumeX,
 	Download,
+	MessageCircle,
+	X,
+	Volume,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { playSound, isSoundEnabled, toggleSound } from "@/lib/sounds";
 import { exportChatHistory } from "@/lib/export";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Message {
 	role: "user" | "assistant" | "error";
@@ -34,8 +38,55 @@ export function ChatBot() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [soundEnabled, setSoundEnabled] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const [isSpeaking, setIsSpeaking] = useState(false);
+	const [speechLang, setSpeechLang] = useState<"en-US" | "hi-IN">("hi-IN");
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
+
+	// Text-to-speech function
+	const speak = (text: string) => {
+		if ("speechSynthesis" in window) {
+			// Cancel any ongoing speech
+			window.speechSynthesis.cancel();
+
+			const utterance = new SpeechSynthesisUtterance(text);
+			utterance.lang = speechLang;
+			utterance.rate = 0.9;
+			utterance.pitch = 1;
+
+			// Get available voices
+			const voices = window.speechSynthesis.getVoices();
+			// Try to find a Hindi voice
+			const hindiVoice = voices.find(
+				(voice) => voice.lang.includes("hi") || voice.lang.includes("IN")
+			);
+
+			if (hindiVoice) {
+				utterance.voice = hindiVoice;
+			}
+
+			utterance.onstart = () => setIsSpeaking(true);
+			utterance.onend = () => setIsSpeaking(false);
+			utterance.onerror = () => setIsSpeaking(false);
+
+			window.speechSynthesis.speak(utterance);
+		}
+	};
+
+	// Stop speaking
+	const stopSpeaking = () => {
+		if ("speechSynthesis" in window) {
+			window.speechSynthesis.cancel();
+			setIsSpeaking(false);
+		}
+	};
+
+	// Toggle language
+	const toggleLanguage = () => {
+		setSpeechLang((prev) => (prev === "en-US" ? "hi-IN" : "en-US"));
+		stopSpeaking();
+	};
 
 	// Initialize sound preference
 	useEffect(() => {
@@ -83,10 +134,12 @@ export function ChatBot() {
 		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
 	}, [messages]);
 
-	// Focus input on mount
+	// Focus input when chat opens
 	useEffect(() => {
-		inputRef.current?.focus();
-	}, []);
+		if (isOpen) {
+			inputRef.current?.focus();
+		}
+	}, [isOpen]);
 
 	// Keyboard shortcuts
 	useEffect(() => {
@@ -96,9 +149,13 @@ export function ChatBot() {
 				e.preventDefault();
 				inputRef.current?.focus();
 			}
-			// Escape to clear input
-			if (e.key === "Escape" && document.activeElement === inputRef.current) {
-				setInput("");
+			// Escape to close chat
+			if (e.key === "Escape") {
+				if (document.activeElement === inputRef.current) {
+					setInput("");
+				} else {
+					setIsOpen(false);
+				}
 			}
 		};
 
@@ -141,6 +198,11 @@ export function ChatBot() {
 			};
 			setMessages((prev) => [...prev, assistantMessage]);
 			playSound("messageReceived");
+
+			// Automatically speak the response if sound is enabled
+			if (soundEnabled) {
+				speak(data.response);
+			}
 		} catch (error) {
 			console.error("Error:", error);
 			const errorMessage =
@@ -187,138 +249,182 @@ export function ChatBot() {
 	};
 
 	return (
-		<div className="w-full max-w-2xl mx-auto p-4 space-y-4">
-			{error && (
-				<Alert variant="destructive" className="mb-4">
-					<AlertCircle className="h-4 w-4" />
-					<AlertDescription>{error}</AlertDescription>
-				</Alert>
-			)}
-			<Card className="h-[600px] p-4 flex flex-col relative">
-				<div className="flex justify-between items-center mb-4">
-					<div className="flex items-center gap-4">
-						<p className="text-sm text-muted-foreground">
-							Press <kbd className="px-2 py-1 bg-muted rounded">Ctrl/⌘ K</kbd>{" "}
-							to focus chat
-						</p>
-						<Button
-							variant="ghost"
-							size="sm"
-							onClick={handleToggleSound}
-							className="text-muted-foreground hover:text-primary"
-							aria-label={
-								soundEnabled ? "Disable sound effects" : "Enable sound effects"
-							}
-						>
-							{soundEnabled ? (
-								<Volume2 className="h-4 w-4" />
-							) : (
-								<VolumeX className="h-4 w-4" />
-							)}
-						</Button>
-					</div>
-					<div className="flex items-center gap-2">
-						<Button
-							variant="ghost"
-							size="sm"
-							onClick={handleExport}
-							className="text-muted-foreground hover:text-primary"
-							aria-label="Export chat history"
-							disabled={messages.length <= 1}
-						>
-							<Download className="h-4 w-4" />
-						</Button>
-						<Button
-							variant="ghost"
-							size="sm"
-							onClick={clearHistory}
-							className="text-muted-foreground hover:text-destructive"
-							aria-label="Clear chat history"
-						>
-							<Trash className="h-4 w-4" />
-						</Button>
-					</div>
-				</div>
-				<div
-					className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600"
-					role="log"
-					aria-live="polite"
-					aria-label="Chat messages"
-				>
-					{messages.map((message, index) => (
-						<div
-							key={index}
-							className={`flex items-start gap-2 ${
-								message.role === "user" ? "justify-end" : "justify-start"
-							}`}
-						>
-							{message.role === "assistant" && (
-								<Bot
-									className="w-6 h-6 mt-1 text-blue-500"
-									aria-hidden="true"
-								/>
-							)}
-							{message.role === "error" && (
-								<AlertCircle
-									className="w-6 h-6 mt-1 text-red-500"
-									aria-hidden="true"
-								/>
-							)}
-							<div
-								className={`max-w-[80%] rounded-lg p-3 ${
-									message.role === "user"
-										? "bg-blue-500 text-white"
-										: message.role === "error"
-										? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-										: "bg-gray-100 dark:bg-gray-800"
-								}`}
-							>
-								<div>{message.content}</div>
-								{message.timestamp && (
-									<div className="mt-1 text-xs opacity-70">
-										{new Date(message.timestamp).toLocaleTimeString()}
-									</div>
-								)}
-							</div>
-							{message.role === "user" && (
-								<User
-									className="w-6 h-6 mt-1 text-blue-500"
-									aria-hidden="true"
-								/>
-							)}
-						</div>
-					))}
-					<div ref={messagesEndRef} />
-					{isLoading && (
-						<div className="flex items-center justify-center py-2">
-							<Loader2 className="h-6 w-6 animate-spin text-blue-500" />
-						</div>
-					)}
-				</div>
-				<form onSubmit={handleSubmit} className="mt-4 flex gap-2">
-					<Input
-						ref={inputRef}
-						value={input}
-						onChange={(e) => setInput(e.target.value)}
-						placeholder="Type your message... (Ctrl/⌘ K to focus)"
-						disabled={isLoading}
-						className="flex-1"
-						aria-label="Chat message input"
-						maxLength={1000}
-					/>
-					<Button
-						type="submit"
-						disabled={isLoading || !input.trim()}
-						aria-label="Send message"
+		<>
+			{/* Floating Chat Button */}
+			<button
+				onClick={() => setIsOpen(true)}
+				className="fixed bottom-6 right-6 p-4 bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 transition-colors z-50"
+				aria-label="Open chat"
+			>
+				<MessageCircle className="h-6 w-6" />
+			</button>
+
+			{/* Chat Interface */}
+			<AnimatePresence>
+				{isOpen && (
+					<motion.div
+						initial={{ opacity: 0, scale: 0.95, y: 20 }}
+						animate={{ opacity: 1, scale: 1, y: 0 }}
+						exit={{ opacity: 0, scale: 0.95, y: 20 }}
+						transition={{ duration: 0.2 }}
+						className="fixed bottom-24 right-6 w-full max-w-[400px] z-50"
 					>
-						{isLoading ? (
-							<Loader2 className="h-4 w-4 animate-spin" />
-						) : (
-							<Send className="h-4 w-4" />
-						)}
-					</Button>
-				</form>
-			</Card>
-		</div>
+						<Card className="h-[600px] p-4 flex flex-col relative shadow-xl">
+							{/* Chat Header */}
+							<div className="flex justify-between items-center mb-4 pb-2 border-b">
+								<div className="flex items-center gap-2">
+									<Bot className="h-5 w-5 text-green-600" />
+									<h2 className="font-semibold">GovGyan Assistant</h2>
+								</div>
+								<div className="flex items-center gap-2">
+									<button
+										onClick={toggleLanguage}
+										className="p-2 hover:bg-gray-100 rounded-full text-sm font-medium"
+										aria-label={`Switch to ${
+											speechLang === "en-US" ? "Hindi" : "English"
+										} speech`}
+									>
+										{speechLang === "en-US" ? "EN" : "हि"}
+									</button>
+									<button
+										onClick={handleToggleSound}
+										className="p-2 hover:bg-gray-100 rounded-full"
+										aria-label={soundEnabled ? "Disable sound" : "Enable sound"}
+									>
+										{soundEnabled ? (
+											<Volume2 className="h-4 w-4" />
+										) : (
+											<VolumeX className="h-4 w-4" />
+										)}
+									</button>
+									<button
+										onClick={clearHistory}
+										className="p-2 hover:bg-gray-100 rounded-full"
+										aria-label="Clear chat history"
+									>
+										<Trash className="h-4 w-4" />
+									</button>
+									<button
+										onClick={handleExport}
+										className="p-2 hover:bg-gray-100 rounded-full"
+										aria-label="Export chat history"
+									>
+										<Download className="h-4 w-4" />
+									</button>
+									<button
+										onClick={() => setIsOpen(false)}
+										className="p-2 hover:bg-gray-100 rounded-full"
+										aria-label="Close chat"
+									>
+										<X className="h-4 w-4" />
+									</button>
+								</div>
+							</div>
+
+							{/* Error Alert */}
+							{error && (
+								<Alert variant="destructive" className="mb-4">
+									<AlertCircle className="h-4 w-4" />
+									<AlertDescription>{error}</AlertDescription>
+								</Alert>
+							)}
+
+							{/* Messages */}
+							<div className="flex-1 overflow-y-auto space-y-4 mb-4">
+								{messages.map((message, index) => (
+									<div
+										key={index}
+										className={`flex items-start gap-2 ${
+											message.role === "user" ? "flex-row-reverse" : ""
+										}`}
+									>
+										<div
+											className={`p-1 rounded-full ${
+												message.role === "user"
+													? "bg-green-100"
+													: message.role === "error"
+													? "bg-red-100"
+													: "bg-gray-100"
+											}`}
+										>
+											{message.role === "user" ? (
+												<User className="h-4 w-4 text-green-600" />
+											) : message.role === "error" ? (
+												<AlertCircle className="h-4 w-4 text-red-600" />
+											) : (
+												<Bot className="h-4 w-4 text-gray-600" />
+											)}
+										</div>
+										<div
+											className={`rounded-lg p-3 max-w-[80%] relative group ${
+												message.role === "user"
+													? "bg-green-500 text-white"
+													: message.role === "error"
+													? "bg-red-50 text-red-600"
+													: "bg-gray-100 text-gray-900"
+											}`}
+										>
+											{message.content}
+											{message.role === "assistant" && (
+												<button
+													onClick={() => speak(message.content)}
+													className="absolute -right-8 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1"
+													aria-label={
+														isSpeaking
+															? "Stop speaking"
+															: `Speak message in ${
+																	speechLang === "en-US" ? "English" : "Hindi"
+															  }`
+													}
+												>
+													{isSpeaking ? (
+														<VolumeX
+															className="h-4 w-4 text-gray-600 hover:text-gray-900"
+															onClick={stopSpeaking}
+														/>
+													) : (
+														<>
+															<Volume className="h-4 w-4 text-gray-600 hover:text-gray-900" />
+															<span className="text-xs text-gray-500">
+																{speechLang === "en-US" ? "EN" : "हि"}
+															</span>
+														</>
+													)}
+												</button>
+											)}
+										</div>
+									</div>
+								))}
+								<div ref={messagesEndRef} />
+							</div>
+
+							{/* Input Form */}
+							<form onSubmit={handleSubmit} className="flex gap-2">
+								<Input
+									ref={inputRef}
+									type="text"
+									placeholder="Type your message..."
+									value={input}
+									onChange={(e) => setInput(e.target.value)}
+									disabled={isLoading}
+									className="flex-1"
+								/>
+								<Button
+									type="submit"
+									disabled={isLoading || !input.trim()}
+									className="bg-green-600 hover:bg-green-700"
+								>
+									{isLoading ? (
+										<Loader2 className="h-4 w-4 animate-spin" />
+									) : (
+										<Send className="h-4 w-4" />
+									)}
+								</Button>
+							</form>
+						</Card>
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</>
 	);
 }

@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LoadingProvider } from "@/components/loading-provider";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { ChatBot } from "@/components/ChatBot";
 import "./globals.css";
 
 export const metadata = {
@@ -32,6 +33,7 @@ export default function RootLayout({
 								<SiteHeader />
 								<main className="flex-1 pt-20 w-full">{children}</main>
 								<SiteFooter />
+								<ChatBot />
 							</div>
 						</SmoothScroll>
 					</LoadingProvider>

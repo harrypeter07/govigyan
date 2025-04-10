@@ -1,6 +1,3 @@
-"use client";
-import React, { useState } from "react";
-import { FiSearch, FiShoppingCart } from "react-icons/fi";
 import { PageTransition } from "@/components/page-transition";
 import { HeroSection } from "@/components/hero-section";
 import { SectionHeading } from "@/components/section-heading";
@@ -10,70 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ShoppingCart, Star, Filter, Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
 
-// Sample product data - replace with your actual products
-const products = [
-	{
-		id: 1,
-		title: "Panchagavya Ghrita",
-		price: "₹450",
-		rating: 5,
-		image: "/image-34.jpg",
-		description: "Traditional Ayurvedic formulation",
-		category: "health",
-	},
-	{
-		id: 2,
-		title: "Cow Urine Ark",
-		price: "₹250",
-		rating: 4.5,
-		image: "/image-34.jpg",
-		description: "Pure and natural cow urine distillate",
-		category: "health",
-	},
-	{
-		id: 3,
-		title: "Herbal Cow Dung Soap",
-		price: "₹120",
-		rating: 4.8,
-		image: "/image-34.jpg",
-		description: "Natural cleansing soap with herbal benefits",
-		category: "personal",
-	},
-	{
-		id: 4,
-		title: "Panchagavya Hair Oil",
-		price: "₹350",
-		rating: 4.7,
-		image: "/image-34.jpg",
-		description: "Nourishing hair oil with five cow products",
-		category: "personal",
-	},
-];
-
-const categories = ["all", "health", "personal", "home"];
-
-export default function Shop() {
-	const [searchQuery, setSearchQuery] = useState("");
-	const [selectedCategory, setSelectedCategory] = useState("all");
-	const [cart, setCart] = useState([]);
-
-	// Filter products based on search and category
-	const filteredProducts = products.filter((product) => {
-		const matchesSearch =
-			product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-			product.description.toLowerCase().includes(searchQuery.toLowerCase());
-		const matchesCategory =
-			selectedCategory === "all" || product.category === selectedCategory;
-		return matchesSearch && matchesCategory;
-	});
-
-	const addToCart = (product) => {
-		setCart([...cart, product]);
-		// You can add more sophisticated cart management here
-	};
-
+export default function ShopPage() {
 	return (
 		<PageTransition>
 			<HeroSection
@@ -82,89 +17,345 @@ export default function Shop() {
 				imageSrc="/image-34.jpg?height=600&width=1920"
 				buttonText="Explore Products"
 				buttonLink="#products"
-				buttonIcon={<ShoppingCart className="h-4 w-4" />}
+				buttonIcon={<ShoppingCart className="w-4 h-4" />}
 			/>
 
 			{/* Featured Products Section */}
 			<section className="py-16 bg-white" id="products" data-scroll-section>
-				<div className="container mx-auto px-4">
+				<div className="container px-4 mx-auto">
 					<SectionHeading
 						title="Featured Products"
 						subtitle="Our most popular cow-based products for health and wellness"
 						centered
 					/>
 
-					<div className="flex justify-between items-center mb-8">
-						<div className="relative flex-1 max-w-md">
-							<Input
-								type="text"
-								placeholder="Search products..."
-								value={searchQuery}
-								onChange={(e) => setSearchQuery(e.target.value)}
-								className="pl-10"
-							/>
-							<Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-						</div>
-						<button className="relative p-2 ml-4">
-							<ShoppingCart className="h-6 w-6" />
-							{cart.length > 0 && (
-								<span className="absolute -top-1 -right-1 bg-green-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
-									{cart.length}
-								</span>
-							)}
-						</button>
+					<div className="grid max-w-6xl grid-cols-1 gap-8 mx-auto sm:grid-cols-2 lg:grid-cols-4">
+						{[
+							{
+								title: "Panchagavya Ghrita",
+								price: "₹450",
+								rating: 5,
+								image: "/image-34.jpg?height=300&width=300",
+							},
+							{
+								title: "Cow Urine Ark",
+								price: "₹250",
+								rating: 4.5,
+								image: "/image-34.jpg?height=300&width=300",
+							},
+							{
+								title: "Herbal Cow Dung Soap",
+								price: "₹120",
+								rating: 4.8,
+								image: "/image-34.jpg?height=300&width=300",
+							},
+							{
+								title: "Panchagavya Hair Oil",
+								price: "₹350",
+								rating: 4.7,
+								image: "/image-34.jpg?height=300&width=300",
+							},
+						].map((product, index) => (
+							<Card
+								key={index}
+								className="overflow-hidden border-none shadow-md group"
+							>
+								<div className="relative h-64 overflow-hidden">
+									<Image
+										src={product.image || "/image-34.jpg"}
+										alt={product.title}
+										fill
+										className="object-cover transition-transform group-hover:scale-105"
+									/>
+									<div className="absolute inset-0 transition-colors bg-black/0 group-hover:bg-black/10"></div>
+								</div>
+								<CardContent className="p-4">
+									<div className="flex items-center mb-2">
+										{Array.from({ length: 5 }).map((_, i) => (
+											<Star
+												key={i}
+												className={`h-4 w-4 ${
+													i < Math.floor(product.rating)
+														? "text-green-600 fill-green-600"
+														: i < product.rating
+														? "text-green-600 fill-green-600"
+														: "text-gray-300"
+												}`}
+											/>
+										))}
+										<span className="ml-1 text-sm text-gray-600">
+											({product.rating})
+										</span>
+									</div>
+									<h3 className="mb-1 font-bold">{product.title}</h3>
+									<div className="flex items-center justify-between">
+										<span className="font-bold text-green-600">
+											{product.price}
+										</span>
+										<Button
+											size="sm"
+											className="text-white bg-green-600 hover:bg-green-700"
+										>
+											<ShoppingCart className="w-4 h-4 mr-1" /> Add
+										</Button>
+									</div>
+								</CardContent>
+							</Card>
+						))}
 					</div>
+				</div>
+			</section>
+
+			{/* Product Categories Section */}
+			<section className="py-16 bg-gray-50" data-scroll-section>
+				<div className="container px-4 mx-auto">
+					<SectionHeading
+						title="Shop by Category"
+						subtitle="Browse our wide range of cow-based products"
+						centered
+					/>
 
 					<Tabs defaultValue="all" className="max-w-6xl mx-auto">
-						<div className="flex justify-between items-center mb-8">
+						<div className="flex items-center justify-between mb-8">
 							<TabsList>
-								{categories.map((category) => (
-									<TabsTrigger
-										key={category}
-										value={category}
-										onClick={() => setSelectedCategory(category)}
-									>
-										{category.charAt(0).toUpperCase() + category.slice(1)}
-									</TabsTrigger>
-								))}
+								<TabsTrigger value="all">All Products</TabsTrigger>
+								<TabsTrigger value="health">Health & Wellness</TabsTrigger>
+								<TabsTrigger value="personal">Personal Care</TabsTrigger>
+								<TabsTrigger value="home">Home & Garden</TabsTrigger>
 							</TabsList>
+
+							<div className="items-center hidden space-x-4 md:flex">
+								<div className="relative">
+									<input
+										type="text"
+										placeholder="Search products..."
+										className="py-2 pl-10 pr-4 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+									/>
+									<Search className="absolute w-4 h-4 text-gray-400 transform -translate-y-1/2 left-3 top-1/2" />
+								</div>
+								<Button variant="outline" size="icon">
+									<Filter className="w-4 h-4" />
+								</Button>
+							</div>
 						</div>
 
-						<TabsContent value={selectedCategory}>
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-								{filteredProducts.map((product, index) => (
-									<Card key={index} className="group overflow-hidden">
-										<div className="relative aspect-square">
+						<TabsContent value="all" className="mt-0">
+							<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+								{Array.from({ length: 12 }).map((_, index) => (
+									<Card
+										key={index}
+										className="overflow-hidden border-none shadow-md group"
+									>
+										<div className="relative h-64 overflow-hidden">
 											<Image
-												src={product.image}
-												alt={product.title}
+												src={`/image-34.jpg?height=300&width=300&text=Product ${
+													index + 1
+												}`}
+												alt={`Product ${index + 1}`}
 												fill
 												className="object-cover transition-transform group-hover:scale-105"
 											/>
+											<div className="absolute inset-0 transition-colors bg-black/0 group-hover:bg-black/10"></div>
 										</div>
 										<CardContent className="p-4">
 											<div className="flex items-center mb-2">
-												<div className="flex items-center">
-													<Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-													<span className="ml-1 text-sm text-gray-600">
-														{product.rating}
-													</span>
-												</div>
+												{Array.from({ length: 5 }).map((_, i) => (
+													<Star
+														key={i}
+														className={`h-4 w-4 ${
+															i < 4
+																? "text-green-600 fill-green-600"
+																: "text-gray-300"
+														}`}
+													/>
+												))}
+												<span className="ml-1 text-sm text-gray-600">
+													(4.0)
+												</span>
 											</div>
-											<h3 className="font-bold mb-1">{product.title}</h3>
-											<p className="text-sm text-gray-600 mb-4">
-												{product.description}
-											</p>
-											<div className="flex justify-between items-center">
+											<h3 className="mb-1 font-bold">
+												Product Name {index + 1}
+											</h3>
+											<div className="flex items-center justify-between">
 												<span className="font-bold text-green-600">
-													{product.price}
+													₹{Math.floor(Math.random() * 500) + 100}
 												</span>
 												<Button
 													size="sm"
-													className="bg-green-600 hover:bg-green-700 text-white"
-													onClick={() => addToCart(product)}
+													className="text-white bg-green-600 hover:bg-green-700"
 												>
-													<ShoppingCart className="h-4 w-4 mr-1" /> Add
+													<ShoppingCart className="w-4 h-4 mr-1" /> Add
+												</Button>
+											</div>
+										</CardContent>
+									</Card>
+								))}
+							</div>
+
+							<div className="flex justify-center mt-12">
+								<Button
+									variant="outline"
+									className="text-green-700 border-green-600 hover:bg-green-50"
+								>
+									Load More Products
+								</Button>
+							</div>
+						</TabsContent>
+
+						<TabsContent value="health" className="mt-0">
+							<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+								{Array.from({ length: 8 }).map((_, index) => (
+									<Card
+										key={index}
+										className="overflow-hidden border-none shadow-md group"
+									>
+										<div className="relative h-64 overflow-hidden">
+											<Image
+												src={`/image-34.jpg?height=300&width=300&text=Health ${
+													index + 1
+												}`}
+												alt={`Health Product ${index + 1}`}
+												fill
+												className="object-cover transition-transform group-hover:scale-105"
+											/>
+											<div className="absolute inset-0 transition-colors bg-black/0 group-hover:bg-black/10"></div>
+										</div>
+										<CardContent className="p-4">
+											<div className="flex items-center mb-2">
+												{Array.from({ length: 5 }).map((_, i) => (
+													<Star
+														key={i}
+														className={`h-4 w-4 ${
+															i < 4
+																? "text-green-600 fill-green-600"
+																: "text-gray-300"
+														}`}
+													/>
+												))}
+												<span className="ml-1 text-sm text-gray-600">
+													(4.0)
+												</span>
+											</div>
+											<h3 className="mb-1 font-bold">
+												Health Product {index + 1}
+											</h3>
+											<div className="flex items-center justify-between">
+												<span className="font-bold text-green-600">
+													₹{Math.floor(Math.random() * 500) + 100}
+												</span>
+												<Button
+													size="sm"
+													className="text-white bg-green-600 hover:bg-green-700"
+												>
+													<ShoppingCart className="w-4 h-4 mr-1" /> Add
+												</Button>
+											</div>
+										</CardContent>
+									</Card>
+								))}
+							</div>
+						</TabsContent>
+
+						<TabsContent value="personal" className="mt-0">
+							<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+								{Array.from({ length: 8 }).map((_, index) => (
+									<Card
+										key={index}
+										className="overflow-hidden border-none shadow-md group"
+									>
+										<div className="relative h-64 overflow-hidden">
+											<Image
+												src={`/image-34.jpg?height=300&width=300&text=Personal ${
+													index + 1
+												}`}
+												alt={`Personal Care ${index + 1}`}
+												fill
+												className="object-cover transition-transform group-hover:scale-105"
+											/>
+											<div className="absolute inset-0 transition-colors bg-black/0 group-hover:bg-black/10"></div>
+										</div>
+										<CardContent className="p-4">
+											<div className="flex items-center mb-2">
+												{Array.from({ length: 5 }).map((_, i) => (
+													<Star
+														key={i}
+														className={`h-4 w-4 ${
+															i < 4
+																? "text-green-600 fill-green-600"
+																: "text-gray-300"
+														}`}
+													/>
+												))}
+												<span className="ml-1 text-sm text-gray-600">
+													(4.0)
+												</span>
+											</div>
+											<h3 className="mb-1 font-bold">
+												Personal Care {index + 1}
+											</h3>
+											<div className="flex items-center justify-between">
+												<span className="font-bold text-green-600">
+													₹{Math.floor(Math.random() * 500) + 100}
+												</span>
+												<Button
+													size="sm"
+													className="text-white bg-green-600 hover:bg-green-700"
+												>
+													<ShoppingCart className="w-4 h-4 mr-1" /> Add
+												</Button>
+											</div>
+										</CardContent>
+									</Card>
+								))}
+							</div>
+						</TabsContent>
+
+						<TabsContent value="home" className="mt-0">
+							<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+								{Array.from({ length: 8 }).map((_, index) => (
+									<Card
+										key={index}
+										className="overflow-hidden border-none shadow-md group"
+									>
+										<div className="relative h-64 overflow-hidden">
+											<Image
+												src={`/image-34.jpg?height=300&width=300&text=Home ${
+													index + 1
+												}`}
+												alt={`Home Product ${index + 1}`}
+												fill
+												className="object-cover transition-transform group-hover:scale-105"
+											/>
+											<div className="absolute inset-0 transition-colors bg-black/0 group-hover:bg-black/10"></div>
+										</div>
+										<CardContent className="p-4">
+											<div className="flex items-center mb-2">
+												{Array.from({ length: 5 }).map((_, i) => (
+													<Star
+														key={i}
+														className={`h-4 w-4 ${
+															i < 4
+																? "text-green-600 fill-green-600"
+																: "text-gray-300"
+														}`}
+													/>
+												))}
+												<span className="ml-1 text-sm text-gray-600">
+													(4.0)
+												</span>
+											</div>
+											<h3 className="mb-1 font-bold">
+												Home & Garden {index + 1}
+											</h3>
+											<div className="flex items-center justify-between">
+												<span className="font-bold text-green-600">
+													₹{Math.floor(Math.random() * 500) + 100}
+												</span>
+												<Button
+													size="sm"
+													className="text-white bg-green-600 hover:bg-green-700"
+												>
+													<ShoppingCart className="w-4 h-4 mr-1" /> Add
 												</Button>
 											</div>
 										</CardContent>
@@ -178,7 +369,7 @@ export default function Shop() {
 
 			{/* Contact Section */}
 			<section className="py-16 bg-amber-50" data-scroll-section>
-				<div className="container mx-auto px-4">
+				<div className="container px-4 mx-auto">
 					<div className="max-w-4xl mx-auto">
 						<ContactForm
 							formType="order"
