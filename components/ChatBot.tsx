@@ -134,26 +134,23 @@ export function ChatBot() {
 		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
 	}, [messages]);
 
-	// Focus input when chat opens
-	useEffect(() => {
-		if (isOpen) {
-			inputRef.current?.focus();
-		}
-	}, [isOpen]);
-
 	// Keyboard shortcuts
 	useEffect(() => {
 		const handleKeyPress = (e: KeyboardEvent) => {
-			// Ctrl/Cmd + K to focus input
-			if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+			// Ctrl/Cmd + K to toggle chat
+			if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
 				e.preventDefault();
-				inputRef.current?.focus();
+				if (!isOpen) {
+					setIsOpen(true);
+				} else if (document.activeElement !== inputRef.current) {
+					inputRef.current?.focus();
+				}
 			}
-			// Escape to close chat
+			// Escape to close chat or clear input
 			if (e.key === "Escape") {
 				if (document.activeElement === inputRef.current) {
 					setInput("");
-				} else {
+				} else if (isOpen) {
 					setIsOpen(false);
 				}
 			}
@@ -161,7 +158,14 @@ export function ChatBot() {
 
 		window.addEventListener("keydown", handleKeyPress);
 		return () => window.removeEventListener("keydown", handleKeyPress);
-	}, []);
+	}, [isOpen]);
+
+	// Focus input when chat opens
+	useEffect(() => {
+		if (isOpen) {
+			inputRef.current?.focus();
+		}
+	}, [isOpen]);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
