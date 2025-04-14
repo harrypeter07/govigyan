@@ -8,6 +8,7 @@ import { Heart, ArrowRight, Check, ChevronRight } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 import { ContactForm } from "@/components/contact-form";
 import { motion } from "framer-motion";
+import { BentoGrid } from "@/components/bento-grid";
 
 export default function Home() {
 	return (
@@ -134,112 +135,57 @@ export default function Home() {
 				{/* Features Section */}
 				<section className="py-16 bg-white" data-scroll-section>
 					<div className="container mx-auto px-4">
-						<motion.div
-							className="grid grid-cols-1 md:grid-cols-2 gap-8"
+						<motion.h2
+							className="text-3xl font-bold mb-12 text-center text-green-800"
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8 }}
+							transition={{ duration: 0.6 }}
 							viewport={{ once: true }}
 						>
-							{/* Feature 1 */}
-							<motion.div
-								whileHover={{ y: -10 }}
-								transition={{ duration: 0.3 }}
-							>
-								<Card className="border-green-100 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-white to-green-50">
-									<CardContent className="p-6">
-										<div className="flex items-center mb-4">
-											<div className="bg-green-50 p-3 rounded-full mr-4">
-												<Image
-													src="/denis-lekaj-zL5-09nwMHU-unsplash.jpg"
-													alt="Cow Icon"
-													width={40}
-													height={40}
-													className="rounded-full"
-												/>
-											</div>
-											<h3 className="text-2xl font-bold text-green-800">
-												Join us & become a GO-Sevak
-											</h3>
-										</div>
-										<p className="text-gray-700 mb-6">
-											As a Go Sevak, you contribute to the preservation of
-											Indian culture and traditions deeply rooted in the
-											significance of cows.
-										</p>
-										<ul className="space-y-3">
-											<li className="flex items-start">
-												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span className="text-gray-800 font-medium">
-													Be part of a community dedicated to cow welfare.
-												</span>
-											</li>
-											<li className="flex items-start">
-												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span className="text-gray-800 font-medium">
-													Uphold the significance of cows in Indian culture.
-												</span>
-											</li>
-											<li className="flex items-start">
-												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span className="text-gray-800 font-medium">
-													Learn and share the value of cows.
-												</span>
-											</li>
-										</ul>
-									</CardContent>
-								</Card>
-							</motion.div>
-
-							{/* Feature 2 */}
-							<motion.div
-								whileHover={{ y: -10 }}
-								transition={{ duration: 0.3 }}
-							>
-								<Card className="border-green-100 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-white to-green-50">
-									<CardContent className="p-6">
-										<div className="flex items-center mb-4">
-											<div className="bg-green-50 p-3 rounded-full mr-4">
-												<Image
-													src="/ivana-vavrova-wzPCL1Qe-RQ-unsplash.jpg"
-													alt="Cow Icon"
-													width={40}
-													height={40}
-													className="rounded-full"
-												/>
-											</div>
-											<h3 className="text-2xl font-bold text-green-800">
-												Donate for the Well-Being of Cows
-											</h3>
-										</div>
-										<p className="text-gray-700 mb-6">
-											Support the preservation of the sacred and cultural
-											significance of cows in India.
-										</p>
-										<ul className="space-y-3">
-											<li className="flex items-start">
-												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span className="text-gray-800 font-medium">
-													Contribute to the protection of a cultural icon.
-												</span>
-											</li>
-											<li className="flex items-start">
-												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span className="text-gray-800 font-medium">
-													Donate to provide nourishment and shelter for cows.
-												</span>
-											</li>
-											<li className="flex items-start">
-												<Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-												<span className="text-gray-800 font-medium">
-													Small contributions lead to significant change.
-												</span>
-											</li>
-										</ul>
-									</CardContent>
-								</Card>
-							</motion.div>
-						</motion.div>
+							Discover Our Initiatives
+						</motion.h2>
+						<BentoGrid
+							items={[
+								{
+									title: "Panchagavya Research",
+									description:
+										"Leading research in cow-based natural remedies and products, combining traditional wisdom with modern science.",
+									image: "/denis-lekaj-zL5-09nwMHU-unsplash.jpg",
+									className: "row-span-2",
+									imageClassName: "h-72",
+								},
+								{
+									title: "Sustainable Farming",
+									description:
+										"Promoting organic farming practices using cow-based fertilizers and pest control methods.",
+									image: "/anshu-a-FHPX-7srnxc-unsplash.jpg",
+								},
+								{
+									title: "Training Programs",
+									description:
+										"Comprehensive training in cow-based farming and product development for farmers and entrepreneurs.",
+									image: "/denis-lekaj-Gj4DOQr2hVk-unsplash.jpg",
+								},
+								{
+									title: "Product Development",
+									description:
+										"Creating innovative cow-based products for health, agriculture, and daily use.",
+									image: "/geike-verniers-z05jp25aYV8-unsplash.jpg",
+								},
+								{
+									title: "Community Outreach",
+									description:
+										"Building a network of farmers and practitioners committed to sustainable agriculture.",
+									image: "/ivana-vavrova-wzPCL1Qe-RQ-unsplash.jpg",
+								},
+								{
+									title: "Cultural Preservation",
+									description:
+										"Preserving and promoting the cultural significance of indigenous cow breeds.",
+									image: "/anand-thakur-y0dSeflqUWo-unsplash.jpg",
+								},
+							]}
+						/>
 					</div>
 				</section>
 
