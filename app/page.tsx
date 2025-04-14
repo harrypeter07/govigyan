@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, ArrowRight, Check, ChevronRight } from "lucide-react";
+import { Heart, ArrowRight, ChevronRight } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 import { ContactForm } from "@/components/contact-form";
 import { motion } from "framer-motion";
