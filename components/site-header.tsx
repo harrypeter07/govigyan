@@ -101,7 +101,7 @@ export function SiteHeader() {
 							initial={{ opacity: 0, x: -20 }}
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5 }}
-							className="text-sm text-white/90 font-medium hover:text-white transition-colors"
+							className="text-sm text-green-900 dark:text-white/90 font-medium hover:text-green-700 dark:hover:text-white transition-colors"
 						>
 							Go Vigyan Anusandhan Kendra
 						</motion.div>
@@ -116,7 +116,7 @@ export function SiteHeader() {
 									initial={{ opacity: 0, y: -10 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.5, delay: 0.1 * index }}
-									className="flex items-center text-sm text-white/90 hover:text-white transition-colors group"
+									className="flex items-center text-sm text-green-900 dark:text-white/90 hover:text-green-700 dark:hover:text-white transition-colors group"
 								>
 									<item.icon className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
 									<span>{item.text}</span>
