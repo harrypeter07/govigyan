@@ -24,18 +24,18 @@ export default function Home() {
 							className="object-cover"
 							priority
 						/>
-						<div className="absolute inset-0 bg-gradient-to-r from-green-600/40 to-transparent flex items-center">
+						<div className="absolute inset-0 flex items-center bg-gradient-to-r from-green-600/40 to-transparent">
 							<motion.div
-								className="container mx-auto px-4"
+								className="container px-4 mx-auto"
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.8 }}
 							>
 								<div className="max-w-3xl text-white">
-									<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+									<h1 className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl">
 										Go Vigyan Anusandhan Kendra
 									</h1>
-									<p className="text-lg md:text-xl mb-8">
+									<p className="mb-8 text-lg md:text-xl">
 										Rediscovering the age-old bond between humans and cows
 										through research and tradition
 									</p>
@@ -43,8 +43,8 @@ export default function Home() {
 										whileHover={{ scale: 1.05 }}
 										whileTap={{ scale: 0.95 }}
 									>
-										<Button className="bg-green-600 hover:bg-green-700 text-white font-semibold">
-											<Heart className="mr-2 h-4 w-4" /> Donate Now
+										<Button className="font-semibold text-white bg-green-600 hover:bg-green-700">
+											<Heart className="w-4 h-4 mr-2" /> Donate Now
 										</Button>
 									</motion.div>
 								</div>
@@ -55,9 +55,9 @@ export default function Home() {
 
 				{/* About Section */}
 				<section className="py-16 bg-white" data-scroll-section>
-					<div className="container mx-auto px-4">
+					<div className="container px-4 mx-auto">
 						<motion.div
-							className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+							className="grid items-center grid-cols-1 gap-12 md:grid-cols-2"
 							initial={{ opacity: 0 }}
 							whileInView={{ opacity: 1 }}
 							transition={{ duration: 0.8 }}
@@ -68,14 +68,14 @@ export default function Home() {
 									src="/denis-lekaj-kiLPiOtirsU-unsplash.jpg"
 									alt="About Go Vigyan"
 									fill
-									className="object-cover hover:scale-105 transition-transform duration-500"
+									className="object-cover transition-transform duration-500 hover:scale-105"
 								/>
 							</div>
 							<div>
-								<h2 className="text-3xl font-bold mb-6 text-gray-900">
+								<h2 className="mb-6 text-3xl font-bold text-gray-900">
 									Go-Vigyan Anusandhan Kendra
 								</h2>
-								<p className="text-gray-700 mb-6">
+								<p className="mb-6 text-gray-700">
 									Go Vigyan Anusandhan Kendra (GVAK) is a Non-Government
 									Organization on a mission to rekindle the age-old bond between
 									humans and cows. Rooted in the rich heritage of Indian
@@ -88,9 +88,9 @@ export default function Home() {
 								<motion.div whileHover={{ scale: 1.05 }}>
 									<Button
 										variant="outline"
-										className="border-green-600 text-green-700 hover:bg-green-50"
+										className="text-green-700 border-green-600 hover:bg-green-50"
 									>
-										Discover More <ArrowRight className="ml-2 h-4 w-4" />
+										Discover More <ArrowRight className="w-4 h-4 ml-2" />
 									</Button>
 								</motion.div>
 							</div>
@@ -100,10 +100,10 @@ export default function Home() {
 
 				{/* Call to Action Banner */}
 				<section
-					className="py-16 bg-gradient-to-r from-amber-50 to-green-50 relative overflow-hidden"
+					className="relative py-16 overflow-hidden bg-gradient-to-r from-amber-50 to-green-50"
 					data-scroll-section
 				>
-					<div className="container mx-auto px-4 relative z-10">
+					<div className="container relative z-10 px-4 mx-auto">
 						<motion.div
 							className="max-w-3xl mx-auto text-center"
 							initial={{ opacity: 0, y: 20 }}
@@ -111,12 +111,12 @@ export default function Home() {
 							transition={{ duration: 0.6 }}
 							viewport={{ once: true }}
 						>
-							<h2 className="text-3xl font-bold mb-6 text-green-800">
+							<h2 className="mb-6 text-3xl font-bold text-green-800">
 								Join us in rediscovering the vast potential of cows and their
 								products to enhance lives and sustain the environment.
 							</h2>
 							<motion.div whileHover={{ scale: 1.05 }}>
-								<Button className="bg-green-600 hover:bg-green-700 text-white font-semibold">
+								<Button className="font-semibold text-white bg-green-600 hover:bg-green-700">
 									Discover More
 								</Button>
 							</motion.div>
@@ -134,9 +134,9 @@ export default function Home() {
 
 				{/* Features Section */}
 				<section className="py-16 bg-white" data-scroll-section>
-					<div className="container mx-auto px-4">
+					<div className="container px-4 mx-auto">
 						<motion.h2
-							className="text-3xl font-bold mb-12 text-center text-green-800"
+							className="mb-12 text-3xl font-bold text-center text-green-800"
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6 }}
@@ -194,16 +194,16 @@ export default function Home() {
 					className="py-16 bg-gradient-to-br from-green-50 to-amber-50"
 					data-scroll-section
 				>
-					<div className="container mx-auto px-4">
+					<div className="container px-4 mx-auto">
 						<motion.div
-							className="grid grid-cols-1 md:grid-cols-2 gap-12"
+							className="grid grid-cols-1 gap-12 md:grid-cols-2"
 							initial={{ opacity: 0 }}
 							whileInView={{ opacity: 1 }}
 							transition={{ duration: 0.8 }}
 							viewport={{ once: true }}
 						>
 							<div>
-								<h2 className="text-3xl font-bold mb-4 text-green-800">
+								<h2 className="mb-4 text-3xl font-bold text-green-800">
 									Our Testimonials
 								</h2>
 								<p className="text-xl text-gray-700">
@@ -211,7 +211,7 @@ export default function Home() {
 								</p>
 							</div>
 							<motion.div
-								className="bg-white p-8 rounded-2xl shadow-lg border-0"
+								className="p-8 bg-white border-0 shadow-lg rounded-2xl"
 								whileHover={{ scale: 1.02 }}
 								transition={{ duration: 0.3 }}
 							>
@@ -224,7 +224,7 @@ export default function Home() {
 										India
 									</p>
 								</div>
-								<p className="text-gray-700 italic">
+								<p className="italic text-gray-700">
 									&quot;I came to Go Vigyan after my jersey cow based dairy went
 									in loss. I was hugely benefitted by the training of producing
 									cow based products. Thanks to Go Vigyan I was able to start a
@@ -238,9 +238,9 @@ export default function Home() {
 
 				{/* Gallery Section */}
 				<section className="py-16 bg-white" data-scroll-section>
-					<div className="container mx-auto px-4">
+					<div className="container px-4 mx-auto">
 						<motion.h2
-							className="text-3xl font-bold mb-12 text-center text-green-800"
+							className="mb-12 text-3xl font-bold text-center text-green-800"
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6 }}
@@ -248,7 +248,7 @@ export default function Home() {
 						>
 							Our Photo Gallery
 						</motion.h2>
-						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+						<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 							{[
 								{
 									title: "Sacred Bond",
@@ -273,25 +273,41 @@ export default function Home() {
 							].map((item, index) => (
 								<motion.div
 									key={index}
-									className="group relative overflow-hidden rounded-2xl shadow-lg"
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6, delay: index * 0.1 }}
+									className="relative overflow-hidden shadow-lg group rounded-2xl"
+									initial={{ opacity: 0, scale: 0.8, y: 50 }}
+									whileInView={{
+										opacity: 1,
+										scale: 1,
+										y: 0,
+										transition: {
+											duration: 0.8,
+											delay: index * 0.2,
+											ease: [0.23, 1, 0.32, 1],
+										},
+									}}
 									viewport={{ once: true }}
-									whileHover={{ y: -10 }}
+									whileHover={{
+										y: -10,
+										transition: { duration: 0.3 },
+									}}
 								>
-									<div className="aspect-square relative">
+									<div className="relative aspect-square">
 										<Image
 											src={item.image}
 											alt={item.title}
 											fill
-											className="object-cover transition-transform duration-500 group-hover:scale-110"
+											className="object-cover transition-transform duration-700 group-hover:scale-110"
 										/>
-										<div className="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-											<div className="text-white">
+										<div className="absolute inset-0 flex items-end p-6 transition-all duration-500 opacity-0 bg-gradient-to-t from-green-900/80 via-green-900/40 to-transparent group-hover:opacity-100">
+											<motion.div
+												className="text-white"
+												initial={{ y: 20, opacity: 0 }}
+												whileHover={{ y: 0, opacity: 1 }}
+												transition={{ duration: 0.3 }}
+											>
 												<h3 className="text-xl font-bold">{item.title}</h3>
 												<p className="text-sm">{item.subtitle}</p>
-											</div>
+											</motion.div>
 										</div>
 									</div>
 								</motion.div>
@@ -302,14 +318,14 @@ export default function Home() {
 
 				{/* News Section */}
 				<section className="py-16 bg-gray-50" data-scroll-section>
-					<div className="container mx-auto px-4">
-						<div className="text-center mb-12">
-							<h2 className="text-3xl font-bold mb-4">News & Articles</h2>
+					<div className="container px-4 mx-auto">
+						<div className="mb-12 text-center">
+							<h2 className="mb-4 text-3xl font-bold">News & Articles</h2>
 							<p className="text-xl text-gray-700">
 								Directly from the latest news and articles
 							</p>
 						</div>
-						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+						<div className="grid grid-cols-1 gap-8 md:grid-cols-3">
 							<Card className="overflow-hidden">
 								<div className="relative h-48">
 									<Image
@@ -320,18 +336,18 @@ export default function Home() {
 									/>
 								</div>
 								<CardContent className="p-6">
-									<div className="text-sm text-gray-500 mb-2">
+									<div className="mb-2 text-sm text-gray-500">
 										1 Nov 2023 • govigyan
 									</div>
-									<h3 className="text-xl font-bold mb-4">
+									<h3 className="mb-4 text-xl font-bold">
 										India s Cherished Heritage: Cow-Centric Culture and
 										Traditions
 									</h3>
 									<Link
 										href="#"
-										className="text-green-600 hover:text-green-700 inline-flex items-center"
+										className="inline-flex items-center text-green-600 hover:text-green-700"
 									>
-										Read More <ChevronRight className="h-4 w-4 ml-1" />
+										Read More <ChevronRight className="w-4 h-4 ml-1" />
 									</Link>
 								</CardContent>
 							</Card>
@@ -353,7 +369,7 @@ export default function Home() {
 
 				{/* Contact Section */}
 				<section className="py-16 bg-background" data-scroll-section>
-					<div className="container mx-auto px-4">
+					<div className="container px-4 mx-auto">
 						<div className="max-w-4xl mx-auto">
 							<ContactForm />
 						</div>
