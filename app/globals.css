@@ -131,7 +131,7 @@ html.has-scroll-dragging {
 	--secondary: #f3f4f6;
 	--secondary-foreground: #000000;
 	--muted: #f3f4f6;
-	--muted-foreground: #6b7280;
+	--muted-foreground: #4b5563;
 	--accent: #f3f4f6;
 	--accent-foreground: #000000;
 	--destructive: #ef4444;
@@ -161,19 +161,19 @@ html.has-scroll-dragging {
 	--card-foreground: #ffffff;
 	--popover: #1f2937;
 	--popover-foreground: #ffffff;
-	--primary: #16a34a;
+	--primary: #22c55e;
 	--primary-foreground: #ffffff;
 	--secondary: #374151;
 	--secondary-foreground: #ffffff;
 	--muted: #374151;
-	--muted-foreground: #9ca3af;
+	--muted-foreground: #d1d5db;
 	--accent: #374151;
 	--accent-foreground: #ffffff;
 	--destructive: #ef4444;
 	--destructive-foreground: #ffffff;
 	--border: #374151;
 	--input: #374151;
-	--ring: #16a34a;
+	--ring: #22c55e;
 	--chart-1: oklch(0.488 0.243 264.376);
 	--chart-2: oklch(0.696 0.17 162.48);
 	--chart-3: oklch(0.769 0.188 70.08);
@@ -195,6 +195,16 @@ html.has-scroll-dragging {
 	}
 	body {
 		@apply bg-background text-foreground;
+	}
+
+	/* Add text shadow for better contrast on light backgrounds */
+	.text-on-light {
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	}
+
+	/* Add text shadow for better contrast on dark backgrounds */
+	.text-on-dark {
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 	}
 }
 

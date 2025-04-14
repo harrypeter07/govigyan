@@ -50,18 +50,18 @@ export function HeroSection({
 					className="object-cover transition-transform duration-700 hover:scale-105"
 					priority
 				/>
-				{overlay && <div className="absolute inset-0 bg-black/40" />}
+				{overlay && <div className="absolute inset-0 bg-black/50" />}
 				<div className="absolute inset-0 flex items-center">
 					<div className="container mx-auto px-4">
-						<div className="max-w-3xl text-white">
+						<div className="max-w-3xl">
 							<h1
 								ref={titleRef}
-								className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 opacity-0"
+								className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 opacity-0 text-white drop-shadow-lg"
 							>
 								{title}
 							</h1>
 							<motion.p
-								className="text-lg md:text-xl mb-8 hover:text-amber-300 transition-colors duration-300"
+								className="text-lg md:text-xl mb-8 text-white drop-shadow-md hover:text-amber-300 transition-colors duration-300"
 								initial={{ opacity: 0, y: 30 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.6, delay: 0.8 }}
