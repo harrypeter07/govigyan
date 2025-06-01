@@ -230,4 +230,15 @@ html.has-scroll-dragging {
 	.animate-alert-fadein {
 		animation: alert-fadein 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 	}
+	@keyframes loading-dot {
+		0% {
+			opacity: 0.2;
+		}
+		20% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0.2;
+		}
+	}
 }
