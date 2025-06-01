@@ -138,7 +138,7 @@ export function SiteFooter() {
 								>
 									<Link
 										href={link.href}
-										className="text-gray-400 hover:text-white transition-colors group relative inline-block"
+										className="text-gray-400 hover:text-white transition-colors group relative inline-block group-hover:scale-105 group-hover:text-amber-400 transition-transform duration-200"
 									>
 										{link.label}
 										<div className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
