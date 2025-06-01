@@ -34,6 +34,7 @@ export function HeroSection({
 			gsap.from(titleRef.current, {
 				opacity: 0,
 				y: 50,
+				scale: 0.97,
 				duration: 1,
 				ease: "power4.out",
 			});
@@ -62,16 +63,16 @@ export function HeroSection({
 							</h1>
 							<motion.p
 								className="text-lg md:text-xl mb-8 text-white drop-shadow-md hover:text-amber-300 transition-colors duration-300"
-								initial={{ opacity: 0, y: 30 }}
-								animate={{ opacity: 1, y: 0 }}
+								initial={{ opacity: 0, y: 30, scale: 0.97 }}
+								animate={{ opacity: 1, y: 0, scale: 1 }}
 								transition={{ duration: 0.6, delay: 0.8 }}
 							>
 								{subtitle}
 							</motion.p>
 							{buttonText && (
 								<motion.div
-									initial={{ opacity: 0, y: 30 }}
-									animate={{ opacity: 1, y: 0 }}
+									initial={{ opacity: 0, y: 30, scale: 0.97 }}
+									animate={{ opacity: 1, y: 0, scale: 1 }}
 									transition={{ duration: 0.6, delay: 1 }}
 								>
 									<Button
