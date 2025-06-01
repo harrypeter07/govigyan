@@ -159,7 +159,7 @@ export function SiteHeader() {
 								<Link
 									href={link.href}
 									className={cn(
-										"relative text-gray-700 hover:text-green-700 font-medium transition-colors py-2 flex items-center",
+										"relative text-gray-700 hover:text-green-700 font-medium transition-colors py-2 flex items-center group-hover:scale-105 group-hover:text-amber-600 transition-transform duration-200",
 										activeLink === link.href && "text-green-700"
 									)}
 								>
