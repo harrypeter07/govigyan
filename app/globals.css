@@ -215,3 +215,19 @@ html.has-scroll-dragging {
 .page-transition {
 	@apply transition-opacity duration-300;
 }
+
+@layer utilities {
+	@keyframes alert-fadein {
+		from {
+			opacity: 0;
+			transform: translateY(0.5rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	.animate-alert-fadein {
+		animation: alert-fadein 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+	}
+}
