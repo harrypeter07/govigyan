@@ -29,7 +29,7 @@ export default function RootLayout({
 				>
 					<LoadingProvider>
 						<SmoothScroll>
-							<div className="relative flex flex-col min-h-screen overflow-hidden">
+							<div className="relative flex flex-col min-h-screen overflow-hidden smooth-scroll">
 								<SiteHeader />
 								<main className="flex-1 pt-20 w-full">{children}</main>
 								<SiteFooter />
