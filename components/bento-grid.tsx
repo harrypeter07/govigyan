@@ -89,7 +89,7 @@ export function BentoGrid({ items }: BentoGridProps) {
 						transition: { duration: 0.3 },
 					}}
 				>
-					<Card className="overflow-hidden h-full bg-gradient-to-br from-teal-50 to-teal-100/50 dark:from-teal-900/90 dark:to-teal-800/80 border-none shadow-lg hover:shadow-2xl transition-all duration-300">
+					<Card className="overflow-hidden h-full bg-gradient-to-br from-teal-50 to-teal-100/50 dark:from-teal-900/90 dark:to-teal-800/80 border-none shadow-lg hover:shadow-2xl hover:shadow-amber-200/30 transition-all duration-300">
 						<CardContent className="p-8 h-full flex flex-col">
 							{item.image && (
 								<div
@@ -124,11 +124,11 @@ export function BentoGrid({ items }: BentoGridProps) {
 									</p>
 								</div>
 								<motion.div
-									className="mt-6 inline-flex"
-									whileHover={{ x: 5 }}
+									className="mt-6 inline-flex group"
+									whileHover={{ x: 5, scale: 1.08 }}
 									transition={{ duration: 0.2 }}
 								>
-									<span className="text-teal-600 dark:text-teal-300 text-lg font-medium group-hover:underline">
+									<span className="text-teal-600 dark:text-teal-300 text-lg font-medium group-hover:underline group-hover:text-amber-500 transition-colors duration-200">
 										Learn more →
 									</span>
 								</motion.div>
