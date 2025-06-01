@@ -19,8 +19,8 @@ export function SectionHeading({
 		<div className={`mb-12 ${centered ? "text-center" : ""} ${className}`}>
 			<motion.h2
 				className="text-3xl md:text-4xl font-bold mb-4 text-gray-900"
-				initial={{ opacity: 0, y: 20 }}
-				whileInView={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0, y: 20, scale: 0.98 }}
+				whileInView={{ opacity: 1, y: 0, scale: 1 }}
 				viewport={{ once: true, margin: "-100px" }}
 				transition={{ duration: 0.5 }}
 			>
@@ -29,8 +29,8 @@ export function SectionHeading({
 			{subtitle && (
 				<motion.p
 					className="text-lg text-gray-700 max-w-3xl"
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
+					initial={{ opacity: 0, y: 20, scale: 0.98 }}
+					whileInView={{ opacity: 1, y: 0, scale: 1 }}
 					viewport={{ once: true, margin: "-100px" }}
 					transition={{ duration: 0.5, delay: 0.1 }}
 				>
