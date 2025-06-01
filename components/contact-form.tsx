@@ -136,7 +136,7 @@ export function ContactForm({
 						value={formData.name}
 						onChange={handleChange}
 						required
-						className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+						className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500 transition-all duration-200 ease-in-out hover:border-primary hover:shadow-sm focus:border-primary focus:shadow-md aria-invalid:border-red-500 aria-invalid:shadow-lg"
 						placeholder="Your name"
 					/>
 				</div>
@@ -155,7 +155,7 @@ export function ContactForm({
 						value={formData.email}
 						onChange={handleChange}
 						required
-						className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+						className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500 transition-all duration-200 ease-in-out hover:border-primary hover:shadow-sm focus:border-primary focus:shadow-md aria-invalid:border-red-500 aria-invalid:shadow-lg"
 						placeholder="Your email"
 					/>
 				</div>
@@ -173,7 +173,7 @@ export function ContactForm({
 						name="phone"
 						value={formData.phone}
 						onChange={handleChange}
-						className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+						className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500 transition-all duration-200 ease-in-out hover:border-primary hover:shadow-sm focus:border-primary focus:shadow-md aria-invalid:border-red-500 aria-invalid:shadow-lg"
 						placeholder="Your phone number"
 					/>
 				</div>
@@ -192,7 +192,7 @@ export function ContactForm({
 							name="subject"
 							value={formData.subject}
 							onChange={handleChange}
-							className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+							className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500 transition-all duration-200 ease-in-out hover:border-primary hover:shadow-sm focus:border-primary focus:shadow-md aria-invalid:border-red-500 aria-invalid:shadow-lg"
 							placeholder="Subject of your message"
 						/>
 					</div>
