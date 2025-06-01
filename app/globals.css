@@ -195,6 +195,8 @@ html.has-scroll-dragging {
 	}
 	body {
 		@apply bg-background text-foreground;
+		background: linear-gradient(120deg, #f3f4f6 0%, #e0f7fa 100%);
+		animation: bg-gradient-move 12s ease-in-out infinite alternate;
 	}
 
 	/* Add text shadow for better contrast on light backgrounds */
@@ -239,6 +241,14 @@ html.has-scroll-dragging {
 		}
 		100% {
 			opacity: 0.2;
+		}
+	}
+	@keyframes bg-gradient-move {
+		0% {
+			background-position: 0% 50%;
+		}
+		100% {
+			background-position: 100% 50%;
 		}
 	}
 }
