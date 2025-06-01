@@ -41,6 +41,9 @@ module.exports = {
 				accent: {
 					DEFAULT: "var(--accent)",
 					foreground: "var(--accent-foreground)",
+					blue: "#38bdf8",
+					pink: "#f472b6",
+					yellow: "#fde68a",
 				},
 				popover: {
 					DEFAULT: "var(--popover)",
@@ -52,9 +55,9 @@ module.exports = {
 				},
 			},
 			borderRadius: {
-				lg: "var(--radius)",
-				md: "calc(var(--radius) - 2px)",
-				sm: "calc(var(--radius) - 4px)",
+				lg: "1.25rem",
+				md: "1rem",
+				sm: "0.75rem",
 			},
 			keyframes: {
 				"accordion-down": {
