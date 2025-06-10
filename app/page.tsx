@@ -9,6 +9,7 @@ import { PageTransition } from "@/components/page-transition";
 import { ContactForm } from "@/components/contact-form";
 import { motion } from "framer-motion";
 import { BentoGrid } from "@/components/bento-grid";
+import { HeroSection } from "../components/hero-section";
 
 export default function Home() {
 	return (
@@ -375,6 +376,12 @@ export default function Home() {
 						</div>
 					</div>
 				</section>
+
+				<div className="container mx-auto px-4 py-10 text-center">
+					<Button variant="resume" asChild>
+						<a href="/resume">View Resume</a>
+					</Button>
+				</div>
 			</div>
 		</PageTransition>
 	);

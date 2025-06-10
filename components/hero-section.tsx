@@ -86,6 +86,9 @@ export function HeroSection({
 									</Button>
 								</motion.div>
 							)}
+							<Button variant="resume" asChild>
+								<a href="/resume">Resume</a>
+							</Button>
 						</div>
 					</div>
 				</div>

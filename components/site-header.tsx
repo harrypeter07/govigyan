@@ -74,6 +74,7 @@ export function SiteHeader() {
 		{ href: "/training", label: "Training" },
 		{ href: "/ayurveda", label: "Panchagavya Ayurved" },
 		{ href: "/shop", label: "Shop" },
+		{ href: "/resume", label: "Resume" },
 	];
 
 	return (
